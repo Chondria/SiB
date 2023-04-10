@@ -1,3 +1,17 @@
+title: SiB
+description: Going in-depth in all-things substrate
+
+baseurl: "/SiB" # the subpath of your site, e.g. /blog
+url: "https://Chondria.github.io" # the base hostname & protocol for your site
+
 remote_theme: pages-themes/cayman@v0.2.0
+
 plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
+  - jekyll-remote-theme
+
+# Optional: Enable Google Analytics
+#google_analytics: UA-XXXX-1
+
+# Enable or disable the site-wide GitHub corner
+github:
+  repo: https://github.com/Chondria/SiB
