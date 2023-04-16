@@ -56,3 +56,12 @@ We welcome contributions to Substrate in Bits! If you would like to contribute, 
 
 ## Code of Conduct
 We expect all contributors to abide by our [code of conduct](https://github.com/Chondria/SiB/blob/main/CODE_OF_CONDUCT.md) (WIP). Please read it carefully before contributing to the Substrate in Bits repository.
+
+## Links
+Have ideas to help improve SiB content? drop them [here](https://github.com/Chondria/SiB/discussions/categories/ideas)
+
+You can ask questions regarding siB content [here](https://github.com/Chondria/SiB/discussions/categories/q-a)
+
+Track our progress [here](https://airtable.com/shrrqq3AdMIbaJ4xT)
+
+Track our content release [here](https://airtable.com/shrogrBF0CJ4caIYL)
