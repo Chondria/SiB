@@ -33,9 +33,9 @@ By following these steps, you can test out the code samples for each Substrate i
 
 ## Table of technical content
 
-| S/N | Content Name | Category | GitHub Link | Polkadot.study Link |
-| --- | --- | --- | --- | --- |
-| 1 | Accessing storage and functions across pallets | Pallet integration | [Link](https://github.com/Chondria/SiB/blob/main/docs/accessing-storage-and-functions-across-pallets.md) | [Link](./docs/accessing-storage-and-functions-across-pallets.md) |
+| S/N | Content Name | Category | Link |
+| --- | --- | --- | --- |
+| 1 | Accessing storage and functions across pallets | Pallet integration | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/accessing-storage-and-functions-across-pallets) |
 
 ## Contributing
 We welcome contributions to Substrate in Bits! If you would like to contribute, please read our [contributing guidelines](https://github.com/Chondria/SiB/blob/main/CONTRIBUTING.md) (WIP) for more information.
