@@ -1,6 +1,6 @@
 # Substrate in Bits
 
-![Substrate in Bits](https://github.com/Chondria/SiB/blob/main/Images/sibbb.png)
+![Substrate in Bits](./Images/sibbb.png)
 
 
 Substrate in Bits is a technical content series/reference aimed at solving the pain points of developers building with Substrate and Rust. The content is designed to go in-depth on some of the common issues faced by developers and provide practical solutions to those issues. This repository contains the [code samples](https://github.com/Chondria/SiB/tree/main/Sandbox), [tutorials](https://github.com/Chondria/SiB/tree/main/docs), and other resources associated with the series.
