@@ -1,6 +1,6 @@
 # Substrate in Bits
 
-![Substrate in Bits](https://github.com/Chondria/SiB/blob/main/Images/sibbb.png)
+![Substrate in Bits](./Images/sibbb.png)
 
 
 Substrate in Bits is a technical content series/reference aimed at solving the pain points of developers building with Substrate and Rust. The content is designed to go in-depth on some of the common issues faced by developers and provide practical solutions to those issues. This repository contains the [code samples](https://github.com/Chondria/SiB/tree/main/Sandbox), [tutorials](https://github.com/Chondria/SiB/tree/main/docs), and other resources associated with the series.
@@ -35,7 +35,7 @@ By following these steps, you can test out the code samples for each Substrate i
 
 | S/N | Content Name | Category | GitHub Link | Polkadot.study Link |
 | --- | --- | --- | --- | --- |
-| 1 | Accessing storage and functions across pallets | Pallet integration | [Link](https://github.com/Chondria/SiB/blob/main/docs/Accessing%20Storage%20and%20Functions%20Across%20Pallets.md) | [Link](http://#) |
+| 1 | Accessing storage and functions across pallets | Pallet integration | [Link](https://github.com/Chondria/SiB/blob/main/docs/Accessing%20Storage%20and%20Functions%20Across%20Pallets.md) | [Link](./docs/accessing-storage-and-functions-across-pallets.md) |
 
 ## Contributing
 We welcome contributions to Substrate in Bits! If you would like to contribute, please read our [contributing guidelines](https://github.com/Chondria/SiB/blob/main/CONTRIBUTING.md) (WIP) for more information.
