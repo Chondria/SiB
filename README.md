@@ -40,7 +40,7 @@ To use the code samples, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/Chondria/SiB.git`
 2. Navigate to the `sandbox` directory: `cd sandbox`
-3. Navigate to the folder for the specific content you are interested in: `cd [content-name]` replace `[content-name]` with the name of the technical content
+3. Navigate to the folder for the specific content you are interested in: `cd [content-name]` replace `[content-name]` with the name of the technical content (This links to the specific repository for that project)
 4. Follow the instructions in the `README.md` file to build and run the example program.
 
 By following these steps, you can test out the code samples for each Substrate in Bits content and gain a better understanding of the concepts discussed in the series.
@@ -49,7 +49,7 @@ By following these steps, you can test out the code samples for each Substrate i
 
 | S/N | Content Name | Category | GitHub Link | Polkadot.study Link |
 | --- | --- | --- | --- | --- |
-| 1 | In progress | In progress | [Link](http://#) | [Link](http://#) |
+| 1 | Accessing storage and functions across pallets | Pallet integration | [Link](https://github.com/Chondria/SiB/blob/main/docs/Accessing%20Storage%20and%20Functions%20Across%20Pallets.md) | [Link](http://#) |
 
 ## Contributing
 We welcome contributions to Substrate in Bits! If you would like to contribute, please read our [contributing guidelines](https://github.com/Chondria/SiB/blob/main/CONTRIBUTING.md) (WIP) for more information.
