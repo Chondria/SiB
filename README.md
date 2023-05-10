@@ -19,29 +19,15 @@ Substrate in Bits is a technical content series/reference aimed at solving the p
 To get started with Substrate in Bits, you can browse the available content on the [doc](https://github.com/Chondria/SiB/tree/main/docs) folder or the table below. Substrate in Bits content will also be available on [Polkadot.study](https://polkadot.study). You can clone the repository to your local machine and run the examples to get a better understanding of the concepts discussed in the series.
 
 ## Code samples
-Each Substrate in Bits content comes with a folder containing all the code and programs used in that content. These code samples can be found in the [Sandbox](https://github.com/Chondria/SiB/tree/main/Sandbox) folder are designed to help you understand the concepts discussed in the content and try them out for yourself. 
+Each Substrate in Bits content comes with its own repository containing all the code and programs used in that content. These code samples are designed to help you understand the concepts discussed in the content and try them out for yourself. 
 
-### Directory Structure
-The directory strcuture for the code samples are as follows
-
-```
-│── Sandbox 
-   └──ABOUT.md
-   │── content-name
-   │   ├── codes
-   │   └──README.md 
-```
-The **content-name** folder is named after the title of the technical content, and contains:
-- The `codes` folder: This contains all the codes and programs used for that content
-- `README.md`: a README file that describes how to set up and use the code samples.
 
 ### Using the code samples
 To use the code samples, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/Chondria/SiB.git`
-2. Navigate to the `sandbox` directory: `cd sandbox`
-3. Navigate to the folder for the specific content you are interested in: `cd [content-name]` replace `[content-name]` with the name of the technical content (This links to the specific repository for that project)
-4. Follow the instructions in the `README.md` file to build and run the example program.
+1. Clone the repository for the specific guide/tutorial. 
+2. Navigate to the repository's directory: `cd [name of repo]`
+3. Follow the instructions in the guide or the `README.md` file of the code sample repository to build and run the example program.
 
 By following these steps, you can test out the code samples for each Substrate in Bits content and gain a better understanding of the concepts discussed in the series.
 
