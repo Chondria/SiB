@@ -37,7 +37,7 @@ cargo build --release
 
 While attempting to compile the node above, you’ll encounter an error similar to the one below: 
 
-![error.png](./Images/Screenshot%202023-05-09%20at%2008.38.05.png)
+![error.png](../Images/Screenshot%202023-05-09%20at%2008.38.05.png)
 
 ## Solving the error
 
