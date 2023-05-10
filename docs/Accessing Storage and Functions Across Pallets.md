@@ -37,7 +37,7 @@ cargo build --release
 
 While attempting to compile the node above, you’ll encounter an error similar to the one below: 
 
-![Screenshot 2023-05-09 at 08.38.05.png](Accessing%20Storage%20and%20Functions%20Across%20Custom%20Pall%20d20e64a6fc84487383786dd8485736bf/Screenshot_2023-05-09_at_08.38.05.png)
+![error.png](https://github.com/Chondria/SiB/blob/main/Images/Screenshot%202023-05-09%20at%2008.38.05.png)
 
 ## Solving the error
 
