@@ -55,26 +55,26 @@ While attempting to compile the node above, you’ll encounter an error similar 
 The custom pallet for this project has one method (ie, the make-identity-transfer method) whose code you can find below:
 
 ```rust
- #[pallet::call]
-	impl<T: Config> Pallet<T> {
-		/// An example dispatchable that takes a singles value as a parameter, writes the value to
-		/// storage and emits an event. This function must be dispatched by a signed extrinsic.
-		#[pallet::call_index(0)]
-		#[pallet::weight(10_000 + T::DbWeight::get().writes(1).ref_time())]
-		pub fn make_identity_transfer(
-            origin: OriginFor<T>,
-            dest: AccountIdLookupOf<T>,
-            #[pallet::compact] value: T::Balance,
-        ) -> DispatchResultWithPostInfo {
-			let sender = ensure_signed(origin)?;
-            let dest = T::Lookup::lookup(dest)?;
-			let lookup_dest = T::Lookup::unlookup(dest);
-            ensure!(pallet_identity::Pallet::has_identity(&sender,1), Error::NotAuthorized);
+#[pallet::call]
+impl<T: Config> Pallet<T> {
+    #[pallet::call_index(0)]
+    #[pallet::weight(10_000 + T::DbWeight::get().writes(1).ref_time())]
+    pub fn make_identity_transfer(
+        origin: OriginFor<T>,
+        dest: AccountIdLookupOf<T>,
+        #[pallet::compact] value: T::Balance,
+    ) -> DispatchResultWithPostInfo {
+        let sender = ensure_signed(origin)?;
+        let dest = T::Lookup::lookup(dest)?;
+        let lookup_dest = T::Lookup::unlookup(dest);
+        ensure!(pallet_identity::Pallet::has_identity(&sender,1), Error::NotAuthorized);
 
-            // Transfer the balance using the tightly coupled pallet-balances module
-            pallet_balances::Pallet::transfer(OriginFor::from(Some(sender).into()), lookup_dest, value)?;
-            Ok(().into())
-		}
+        // Transfer the balance using the tightly coupled pallet-balances module
+        pallet_balances::Pallet::transfer(OriginFor::from(Some(sender).into()), lookup_dest, value)?;
+        Ok(().into())
+    }
+}
+
 ```
 
 This function takes three parameters:
@@ -159,10 +159,15 @@ Tight coupling was used in the example provided earlier, in which both the `iden
 
 ```rust
 #[pallet::config]
-	pub trait Config: frame_system::Config + pallet_balances::Config + pallet_identity::Config {
-		/// Because this pallet emits events, it depends on the runtime's definition of an event.
-		type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
-	}
+pub trait Config: frame_system::Config 
+    + pallet_balances::Config 
+    + pallet_identity::Config 
+{
+    // Because this pallet emits events, it depends on the runtime's definition of an event.
+    type RuntimeEvent: From<Event<Self>> 
+        + IsType<<Self as frame_system::Config>::RuntimeEvent>;
+}
+
 ```
 
 This essentially means that our custom pallet can access all the associated types, constants, and functions defined in the `Config` trait of the identity and balances pallets, as well as other types and functions that they expose via their `Config` trait. Tight coupling offers less modularity and flexibility because both modules must be included for one to be used, and any changes made in one pallet will often have an impact on the other
@@ -174,13 +179,14 @@ Loose coupling offers more modularity for pallets. To explain this, let’s use 
 [https://github.com/paritytech/substrate/blob/master/frame/democracy/src/lib.rs#L294-L352](https://github.com/paritytech/substrate/blob/master/frame/democracy/src/lib.rs#L294-L352)
 
 ```rust
-/// Origin from which the next tabled referendum may be forced. This is a normal
-		/// "super-majority-required" referendum.
-		type ExternalOrigin: EnsureOrigin<Self::RuntimeOrigin>;
+// Origin from which the next tabled referendum may be forced. 
+// This is a normal "super-majority-required" referendum.
+type ExternalOrigin: EnsureOrigin<Self::RuntimeOrigin>;
 
-		/// Origin from which the next tabled referendum may be forced; this allows for the tabling
-		/// of a majority-carries referendum.
-		type ExternalMajorityOrigin: EnsureOrigin<Self::RuntimeOrigin>;
+// Origin from which the next tabled referendum may be forced; 
+// this allows for the tabling of a majority-carries referendum.
+type ExternalMajorityOrigin: EnsureOrigin<Self::RuntimeOrigin>;
+
 ```
 
 The `ExternalOrigin` type is bound to the `EnsurOrigin` trait. You’ll then have to specify the type to use in the runtime, and the type must implement the `EnsureOrigin` trait.
@@ -189,12 +195,13 @@ The `ExternalOrigin` type is bound to the `EnsurOrigin` trait. You’ll then hav
 
 ```rust
 impl pallet_democracy::Config for Runtime {
-/// A straight majority of the council can decide what their next motion is.
-	type ExternalOrigin =
-		pallet_collective::EnsureProportionAtLeast<AccountId, CouncilCollective, 1, 2>;
-	/// A majority can have the next scheduled referendum be a straight majority-carries vote.
-	type ExternalMajorityOrigin =
-		pallet_collective::EnsureProportionAtLeast<AccountId, CouncilCollective, 1, 2>;
+    // A straight majority of the council can decide what their next motion is.
+    type ExternalOrigin = 
+        pallet_collective::EnsureProportionAtLeast<AccountId, CouncilCollective, 1, 2>;
+
+    // A majority can have the next scheduled referendum be a straight majority-carries vote.
+    type ExternalMajorityOrigin = 
+        pallet_collective::EnsureProportionAtLeast<AccountId, CouncilCollective, 1, 2>;
 }
 ```
 
@@ -204,23 +211,27 @@ In the example above, the `EnsureProportionAtLeast` struct was used for the runt
 
 ```rust
 pub struct EnsureProportionAtLeast<AccountId, I: 'static, const N: u32, const D: u32>(
-	PhantomData<(AccountId, I)>,
+    PhantomData<(AccountId, I)>,
 );
+
 impl<
-		O: Into<Result<RawOrigin<AccountId, I>, O>> + From<RawOrigin<AccountId, I>>,
-		AccountId,
-		I,
-		const N: u32,
-		const D: u32,
-	> EnsureOrigin<O> for EnsureProportionAtLeast<AccountId, I, N, D>
+        O: Into<Result<RawOrigin<AccountId, I>, O>> + From<RawOrigin<AccountId, I>>,
+        AccountId,
+        I,
+        const N: u32,
+        const D: u32,
+    > 
+    EnsureOrigin<O> for EnsureProportionAtLeast<AccountId, I, N, D>
 {
-	type Success = ();
-	fn try_origin(o: O) -> Result<Self::Success, O> {
-		o.into().and_then(|o| match o {
-			RawOrigin::Members(n, m) if n * D >= N * m => Ok(()),
-			r => Err(O::from(r)),
-		})
-	}
+    type Success = ();
+
+    fn try_origin(o: O) -> Result<Self::Success, O> {
+        o.into().and_then(|o| match o {
+            RawOrigin::Members(n, m) if n * D >= N * m => Ok(()),
+            r => Err(O::from(r)),
+        })
+    }
+}
 ```
 
 If in the future you’ll like to use a different pallet for the runtime implementation of `ExternalOrigin` and `ExternalMajorityOrigin` , all you’ll have to do is to declare a new struct in the pallet, implement the `EnsurOrigin` trait for the new struct and assign it to `ExternalOrigin` and `ExternalMajorityOrigin` when implementing the pallet in your runtime.  
@@ -233,14 +244,14 @@ All substrate pallets have a `Pallet` struct which acts as a container for all t
 
 ```rust
 #[pallet::pallet]
-	pub struct Pallet<T>(_);
+pub struct Pallet<T>(_);
 ```
 
 The type for all implementations for this struct must be bound to the pallet’s `config` trait.
 
 ```rust
 impl<T: Config> Pallet<T> {
-	pub fn some_function() {
+    pub fn some_function() {
         // code here
     }
 }
