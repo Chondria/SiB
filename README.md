@@ -36,6 +36,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | S/N | Content Name | Category | Link |
 | --- | --- | --- | --- |
 | 1 | Accessing storage and functions across pallets | Pallet integration | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/accessing-storage-and-functions-across-pallets) |
+| 2 | Using generic types in custom data | Custom data | [Visit](https://#) |
 
 ## Contributing
 We welcome contributions to Substrate in Bits! If you would like to contribute, please read our [contributing guidelines](https://github.com/Chondria/SiB/blob/main/CONTRIBUTING.md) (WIP) for more information.
