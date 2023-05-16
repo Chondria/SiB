@@ -1,3 +1,14 @@
+---
+tags:
+  - substrate
+keywords: [polkadot, substrate, rust generics, storage, pallets]
+description: How to access Storage and Functions Across Custom Pallets
+updated: 2023-05-09
+author: abdbee
+duration: 4h
+level: intermediate
+---
+
 # Accessing Storage and Functions Across Custom Pallets
 
 When developing blockchains with substrate, you’ll often need to use the functionalities provided by other pallets to save time in writing custom code. 
