@@ -1,3 +1,14 @@
+---
+tags:
+  - substrate
+keywords: [polkadot, substrate, rust generics, pallets]
+description: How to implement a custom data type that leverages substrate rich type system
+updated: 2023-05-15
+author: cenwadike
+duration: 3h
+level: intermediate
+---
+
 # Using Generic Types in Custom Data in a Substrate Pallet
 
 When developing a custom state transition logic with substrate, you’ll often need to create a custom data structure to handle information about the blockchain state or to temporarily store data before it is processed. 
