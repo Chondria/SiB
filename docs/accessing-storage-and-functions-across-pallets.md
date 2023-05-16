@@ -48,7 +48,15 @@ cargo build --release
 
 While attempting to compile the node above, you’ll encounter an error similar to the one below: 
 
-![error.png](../Images/Screenshot%202023-05-09%20at%2008.38.05.png)
+```
+error [E0283]: type annotations needed
+    -> pallets/template/src/lib.rs:84:21
+      |
+ 84   |          ensure! (pallet_identity: :Pallet: :has_identity (&sender, 1), Error: :NotAuthorized);
+      |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter 'r declared on the struct 'Pallet"
+      |
+      = note: cannot satisfy : palletidentity::Config
+```
 
 ## Solving the error
 
