@@ -147,7 +147,7 @@ A common error when using `Vec<u8>` is shown below:
 ```bash
 trait `MaxEncodedLen` is not implemented for `Vec<u8>`
 ```
-This error originates because the Rust compiler does not know the maximum length of the `Vec<u8>` at compile time.
+This error originates because the parity SCALE codec (an encoding and decoding format) could not decode the maximum length of the `Vec<u8>`.
 
 A simple fix is to ensure that your `Pallet` struct has this `#[pallet::without_storage_info]` implemented like so:
 
@@ -156,6 +156,8 @@ A simple fix is to ensure that your `Pallet` struct has this `#[pallet::without_
 #[pallet::without_storage_info]
 pub struct Pallet<T>(_);
 ```
+
+An alternative fix would be replacing `Vec<u8>` with `BoundedVec<u8>`. Using `BoundedVec<u8>` allows parity SCALE codec to decode the length of the vector.
 
 
 2. trait bound `TypeInfo` is not satisfied; `TypeInfo` is not implemented for `custom_struct`.
@@ -181,7 +183,7 @@ pub struct BookSummary<AccountId, BlockNumber> {
 
 - `ValueQuery` always returns a value from storage or causes the program to panic loudly. You can use ValueQuery to return the default value if you have configured a specific default for a storage item or return the value configured with the OnEmpty generic.
 
-- ResultQuery queries a result value from storage and returns an error if there's no value in storage.
+- `ResultQuery` queries a result value from storage and returns an error if there's no value in storage.
 
 
 ## Summary
