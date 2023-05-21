@@ -1,3 +1,14 @@
+---
+tags:
+  - substrate
+keywords: [polkadot, substrate, error handling, dispatchables, pallets]
+description: DispatchResult vs DispathResultWithPostInfo
+updated: 2023-05-21
+author: abdbee
+duration: 3h
+level: intermediate
+---
+
 # DispatchResult vs DispathResultWithPostInfo
 
 When writing functions for substrate modules, you generally have the option to return their values as one of two result types: `DispatchResult` or `DispatchResultWithPostInfo` . You can create your own custom types and use them as return types, of course, provided they implement the necessary traits. 
