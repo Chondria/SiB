@@ -20,7 +20,7 @@ It will only take 2 minutes of your time. Thank you!
 
 ## Reproducing errors
 
-For the sake of this guide, we’ve created a custom blockchain and built a new pallet. The blockchain serves as an archive of books and has a pallet that allows users to upload a summary of a book and retrieve a book if it is already archived. Currently, the only functionality in this pallet is the `archive_book` method which ensures all relevant information about a book is stored on the blockchain.
+For the sake of this guide, we’ve created a custom blockchain and built a new pallet. The blockchain  serves as an archive of books and has a pallet that allows users to upload a summary of a book and retrieve a book if it is already archived. Currently, the only functionality in this pallet is the `archive_book` method which ensures all relevant information about a book is stored on the blockchain.
 
 ### Environment and project setup.
 
@@ -83,12 +83,12 @@ The pallet has a unique data type (ie, BookSummary ) which was defined like so:
 - **`title`**: The title of a book that is archived,  stored as a vector of `u8`.
 - **`author`**: The author of a book that is archived, stored as a vector of `u8`.
 - **`url`**: The web url of a book that is archived, stored as a vector of `u8`.
-- **`archiver`**: The user who archived a book, stored as a vector of `AccountId`.
-- **`timestamp`**: The block height when a user archived a book, stored as `BlockNumber`.
+- **`archiver`**: The user who archived a book, stored as an `AccountId`.
+- **`timestamp`**: The block height when a user archived a book, stored as a `BlockNumber`.
 
 `BoookSummary` uses two FRAME generic types:
 1. `AccountId`: which is used to record who archived a book.
-2. `BlockNumber`: which is used to record the time when a book was archived.
+2. `BlockNumber`: which is used to record when a book was archived.
 The function body does the following:
 
 The error we’re getting above originates from line 72:
@@ -139,7 +139,7 @@ To learn more about the types available in FRAME System `Config` visit the [docu
 
 
 ### A look at complementary errors you may encounter
-Most of the common errors associated with using custom types are related to absence trait implemtation.
+Most of the common errors associated with using custom types are related to absent trait implementation(s).
 
 1. `MaxEncodedLen` is not implemented for `Vec<u8>`
 
@@ -192,18 +192,21 @@ In this guide, you:
 
 - Encountered a compilation error in the template due to not **`Config`** type being out of the scope of a custom data type.
 - To fix the error, you replaced the problematic line of code with the appropriate line that include the generic type parameter **`<T>`**.
-
+ 
 Also, you learned that:
 
 - All Substrate pallets must define trait **`T`** which defines a Pallet configuration.
 - This trait must implement FRAME system **`Config`** trait.
 - A concrete Pallet trait **`Config`** is implemented on a runtime.
 - A custom struct must implement all relevant traits.
+- A stringy data type can be stored in substrate as **`Vec<u8>`**
 
 To learn more about the concepts discussed in this guide, here are some resources that we recommend:
 
-- [FRAME System](https://paritytech.github.io/substrate/master/frame_system/index.html/)
+[Accessing runtime storage](https://docs.substrate.io/build/runtime-storage/#accessing-runtime-storage)
 - [Runtime storage structures](https://docs.substrate.io/build/runtime-storage/#Querying-Storage/)
+- [FRAME System](https://paritytech.github.io/substrate/master/frame_system/index.html/)
+
 
 We’re inviting you to fill out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD) to help us measure our progress and improve Substrate in Bits content. It will only take 2 minutes of your time. Thank you!
 
