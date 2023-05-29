@@ -9,7 +9,7 @@ duration: 3h
 level: intermediate
 ---
 
-# Blake2_128 vs Blake2_128_concat
+# Blake2_128Concat vs Twox64Concat
 
 It is a common practice to the hash input of storage items when implementing a storage type with substrate. You may need to choose suitable hashing algorithms to ensure data safety and maintain a well-optimized runtime by using an appropriate algorithm for your specific use case to prevent a bottleneck during state transition.
 
