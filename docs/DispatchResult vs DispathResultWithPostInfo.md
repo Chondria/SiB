@@ -268,7 +268,7 @@ Err(DispatchErrorWithPostInfo {
 This signals that the function failed with a **`BadOrigin`** error, consumed 3000 units of weight by the time the error occurred, and the caller should not be charged a fee.
 
 ## Summary
-This guide provides an in-depth exploration into the role of `DispatchResul`t and `DispatchResultWithPostInfo` return types when writing functions for Substrate modules. 
+This guide provides an in-depth exploration into the role of `DispatchResult` and `DispatchResultWithPostInfo` return types when writing functions for Substrate modules. 
 
 The `DispatchResult` enumeration indicates the success or failure of a dispatchable call. `DispatchResultWithPostInfo`, on the other hand, provides additional post-dispatch information such as computational weight consumed by the call and fee payment details.
 
