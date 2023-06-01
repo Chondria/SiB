@@ -37,7 +37,8 @@ By following these steps, you can test out the code samples for each Substrate i
 | --- | --- | --- | --- |
 | 1 | Accessing storage and functions across pallets | Pallet integration | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/accessing-storage-and-functions-across-pallets) |
 | 2 | Using generic types in custom data | Custom data | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/using-generic-type-in-custom-data) |
-| 3 | DispatchResult vs DispathResultWithPostInfo | Dispatchables | [Visit](https://#) |
+| 3 | DispatchResult vs DispathResultWithPostInfo | Dispatchables | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/DispatchResult%20vs%20DispathResultWithPostInfo) |
+| 4 | Blake2_128Concat vs Twox64Concat | Cryptography | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/Blake2_128Concat%20vs%20Twox64Concat) |
 
 
 ## Contributing
