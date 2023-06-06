@@ -89,16 +89,16 @@ However, the implementation of `pallet_identity::Config` for your runtime expect
 
 ```rust
 construct_runtime!(
-	pub struct Runtime
-	where
-		Block = Block,
-		NodeBlock = opaque::Block,
-		UncheckedExtrinsic = UncheckedExtrinsic,
-	{
-		// ----- *snip* ------
-		Identity: pallet_identity //<------ add this line
-	}
+    pub struct Runtime where
+        Block = Block,
+        NodeBlock = opaque::Block,
+        UncheckedExtrinsic = UncheckedExtrinsic,
+    {
+        // ----- *snip* ------
+        Identity: pallet_identity, //<------ add this line
+    }
 );
+
 ```
 
 Including `pallet_identity` in the construct_runtime macro does a couple of things.
