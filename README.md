@@ -39,6 +39,8 @@ By following these steps, you can test out the code samples for each Substrate i
 | 2 | Using generic types in custom data | Custom data | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/using-generic-type-in-custom-data) |
 | 3 | DispatchResult vs DispathResultWithPostInfo | Dispatchables | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/DispatchResult%20vs%20DispathResultWithPostInfo) |
 | 4 | Blake2_128Concat vs Twox64Concat | Hashing | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/Blake2_128Concat%20vs%20Twox64Concat) |
+| 5 | Let’s distill the construct_runtime macro | Macros | [Visit](https://#) |
+
 
 
 ## Contributing
