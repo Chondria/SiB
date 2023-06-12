@@ -3,18 +3,18 @@ tags:
   - substrate
 keywords: [polkadot, substrate, pallets, unit test, mock runtime, rust]
 description: Running unit tests on substrate pallet.
-updated: 2023-06-11
+updated: 2023-06-12
 author: cenwadike
 duration: 3h
 level: intermediate
 ---
 
 # Running unit tests on substrate pallet
-Testing the functionality of any software is an essential component of a software development lifecycle. Unit testing in substrate allows you to confirm that the methods exposed by a pallet are logically correct. Testing also allows you to ascertain that data related to a pallet is handled correctly when interacting with the pallet.
+Testing the functionality of any software is an essential component of the software development lifecycle. Unit testing in substrate allows you to confirm that the methods exposed by a pallet are logically correct. Testing also enables you to ascertain that data and events related to a pallet are handled correctly when interacting with the pallet.
 
 Substrate provides a comprehensive set of APIs that allow you to set up a test environment. This test environment can mock substrate runtime and simulate transaction execution for extrinsics and queries of your runtime.  
 
-In this guide, we will walk through a common problem related to mocking a runtime and testing a substrate pallet. We will also have an in-depth look at some important APIs that substrate exposes for testing and how to leverage them for complex testing scenarios.
+In this guide, we will walk through a common problem related to mocking a runtime and testing a substrate pallet. We will also have an in-depth look at some crucial APIs that substrate exposes for testing and how to leverage them for complex testing scenarios.
 
 >Help us measure our progress and improve Substrate in Bits content by filling out our living [feedback form](https://airtable.com/appc45lFGS94WumrY/tblnuIR8lSd4TX7IR/viwqMQuAR6zSDn765?blocks=hide). Thank you!
 
@@ -74,31 +74,33 @@ error[E0046]: not all trait items implemented, missing: `RuntimeEvent`
 
 This compiler error tells us that **`RuntimeEvent`** is not implemented on the mock runtime. The error further points us to the Pallet **`Config`** trait in `lib.rs` where **`RuntimeEvent`** is defined.
 
+## Solving the error
+
 We may recall that substrate exposes a rich set of APIs that allows us to mock a runtime without having to scaffold a full-blown runtime ourselves. However, to couple our pallet to this mock runtime, we must implement the **`Config`** trait of our pallet on the mock runtime.
 
-A careful inspection of `mock.rs` reveals that a mock runtime was constructed using the `FRAME` **`construct_runtime`** macro taking **`Test`** enum as an argument for the mock runtime. This **`Test`** must contain implementations for each of the pallet configuration traits that are used in the mock runtime.
+A careful inspection of `mock.rs` reveals that a mock runtime was constructed using the `FRAME` **`construct_runtime`** macro taking **`Test`** enum as an argument for the mock runtime. This **`Test`** must contain trait definitions for each of the pallets that are used in the mock runtime.
 
 The `Test` enum in `mock.rs` contains the trait definition for the `frame_system` pallet and our custom `archiver_pallet` like so:
 
 ```rust 
 // Configure a mock runtime to test the pallet.
 frame_support::construct_runtime!(
-    pub enum Test where
-        Block = Block,
-        NodeBlock = Block,
-        UncheckedExtrinsic = UncheckedExtrinsic,
-    {
-        System: frame_system,
-        ArchiverPallet: pallet_archiver,
-    }
+   pub enum Test where
+      Block = Block,
+      NodeBlock = Block,
+      UncheckedExtrinsic = UncheckedExtrinsic,
+   {
+      System: frame_system,
+      ArchiverPallet: pallet_archiver,
+   }
 );
 ```
+
 Because `Test` only needs to define the pallet, each pallet's configuration trait must be implemented (separately).
-As you may have observed in `mock.rs`, each pallet's `Config` trait was implemented for `Test` and all relevant `Config` types were defined for each.
+As you may have observed in `mock.rs`, each pallet's `Config` trait was implemented for `Test` and all relevant `Config` types were defined for each pallet.
 
 Our error resulted from the missing implementation of the `RuntimeEvent` trait type in the `archiver_pallet` `Config` implementation.
 
-## Solving the error
 The solution to the compiler error is to implement **`RuntimeEvent`** trait type like so:
 
 ```rust
@@ -139,7 +141,17 @@ where
 }
 ```
 
-`execute_with` exposes the `sp_state_machine::TestExternalities` constructed from our `Test` enum to a test case and simulates the execution of a substrate extrinsic.
+`execute_with` exposes the `sp_state_machine::TestExternalities` constructed from our `Test` enum to a test case and emulates the execution of a substrate extrinsic and runtime storage query.
+
+You may observe in `mock.rs` that `TestExternalities` of mock runtime was constructed and exposed like so:
+```rust 
+pub fn new_test_env() -> sp_io::TestExternalities {
+    system::GenesisConfig::default()
+        .build_storage::<Test>()
+        .unwrap()
+        .into()
+}
+```
 
 From this, we can construct a test for `archiver_pallet` like so:
 
@@ -169,6 +181,10 @@ fn archive_book_works() {
     new_test_env().execute_with(|| {
       // ----- *snip* ------
 
+      let url: Vec<u8> = "url".into();
+
+      // ----- *snip* ------
+
       let stored_book_summary = ArchiverPallet::book_summary(hash).unwrap();
       assert_eq!(stored_book_summary.url, url);
     });
@@ -189,9 +205,7 @@ frame_support::construct_runtime!(
    {
       System: frame_system,
       ArchiverPallet: pallet_archiver,
-      AnotherPallet: path::to::pallet_another,   // <-- another pallet trait type
-      System: frame_system::{Pallet, Call, Event<T>, Config<T>} = 0,
-        Test: path::to::test::{Pallet, Call} = 1,
+      AnotherPallet: path::to::pallet_another,   // <-- another pallet trait type 
    }
 );
 ```
@@ -231,7 +245,7 @@ We also had a look at important substrate APIs including:
 - frame_system `construct_runtime` macro for building a runtime from provided pallets.
 - `sp_io::TestExternalities` for interacting with a mock runtime through a test case.
 
-This article was focused on testing the functionalities of pallets, we did **not** learn how to test a full node. In a future article, we will look at how to implement test scenarios on full node, so keep an eye out for this.
+This article was focused on testing the functionalities of pallets, we did **not** learn how to test a full node. In a future article, we will look at implementing test scenarios on full node, so keep an eye out for this.
 
 To learn more about testing in substrate, check out these resources:
 - [Unit test](https://docs.substrate.io/test/unit-testing/#test-pallet-log-in-a-mock-runtime)
@@ -240,13 +254,3 @@ To learn more about testing in substrate, check out these resources:
 
 
 > We’re inviting you to fill out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD) to help us measure our progress and improve Substrate in Bits content. It will only take 2 minutes of your time. Thank you!
-
-
-
-
-
-
-
-
-
-
