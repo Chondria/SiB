@@ -1,15 +1,26 @@
+---
+tags:
+  - substrate
+keywords: [polkadot, substrate, traits, Config, pallets, rust]
+description: Substrate Pallets Configuration: An Error-based Approach
+updated: 2023-06-21
+author: abdbee
+duration: 3h
+level: intermediate
+---
+
 # Substrate Pallets Configuration: An Error-based Approach
 
 When implementing a pallet for your runtime, there are things to be kept in place for your runtime to work as intended. One of those things is ensuring that a concrete type is defined for all the associated types in the Pallet’s Config trait and that all the concrete types used for the runtime configuration are bound by traits specified by the pallet. 
 
-In this guide, we’ll take an error-based approach to understanding what happens when you don’t configure the pallets correctly for your runtime.
+In this guide, we’ll take an error-based approach to understand what happens when you don’t configure the pallets correctly for your runtime.
 
 > To help us measure our progress and improve Substrate in Bits content, please fill out our living [feedback form](https://airtable.com/appc45lFGS94WumrY/tblnuIR8lSd4TX7IR/viwqMQuAR6zSDn765?blocks=hide). It will only take 2 minutes of your time. Thank you!
 
 
 ## Reproducing errors
 
-### Environment and project set up
+### Environment and project setup
 
 To follow along with this tutorial, ensure that you have the Rust toolchain installed.
 
