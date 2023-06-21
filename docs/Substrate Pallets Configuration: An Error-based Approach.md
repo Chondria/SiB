@@ -2,7 +2,7 @@
 tags:
   - substrate
 keywords: [polkadot, substrate, traits, config, pallets, rust]
-description: Substrate Pallets Configuration: An Error-based Approach
+description: Substrate Pallets Configuration, An Error-based Approach
 updated: 2023-06-21
 author: abdbee
 duration: 3h
