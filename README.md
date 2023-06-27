@@ -42,6 +42,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | 5 | Let’s distill the construct_runtime macro | Macros | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/Let%E2%80%99s%20distill%20the%20construct_runtime%20macro) |
 | 6 | Running unit tests on substrate pallet | Unit test | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/Running-unit-test-on-substrate-pallet) |
 | 7 | Substrate Pallets Configuration: An Error-based Approach | Pallet integration | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/Substrate%20Pallets%20Configuration:%20An%20Error-based%20Approach) |
+| 8 | Working with Assets on Substrate | Fungible Tokens | [Visit](#content) |
 
 
 
