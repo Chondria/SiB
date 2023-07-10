@@ -545,7 +545,7 @@ Both test and compilation should run successfully.
 ## Going in-depth
 
 ### Under the hood
-Substrate pallet benchmarking process are a series of steps that is carried out using the runtime to mimic the execution of extrinsics and generate weights based on the specified hardware configuration.
+Substrate pallet benchmarking process is a series of steps that are carried out using the runtime to mimic the execution of extrinsics and generate weights based on the specified hardware configuration.
 
 A deep dive into Substrate extrinsic is extensively described by Shawn T in this substrate seminar [recording](https://www.google.com/search?q=substrate+benchmark+deep+dive&oq=substrate+ben&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARBFGEAyBggCEEUYOTIGCAMQIxgnMgYIBBBFGDsyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQg5NTE1ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:d5e77f79,vid:Qa6sTyUqgek).
 
