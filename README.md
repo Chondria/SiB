@@ -44,6 +44,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | 7 | Substrate Pallets Configuration: An Error-based Approach | Pallet integration | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/Substrate%20Pallets%20Configuration:%20An%20Error-based%20Approach) |
 | 8 | Working with Assets on Substrate | Fungible Tokens | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/working-with-assets-on-substrate) |
 | 9 | Let’s distill the #[pallet::storage] macro | Macros | [Visit](#content) |
+| 10 | Benchmarking substrate pallet | Benchmarking | [Visit](#content) |
 
 
 
