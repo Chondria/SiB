@@ -15,7 +15,7 @@ When developing a custom state transition logic with substrate, you’ll often n
 This guide will walk you through a common problem faced when trying to implement a custom data type that leverages substrate rich type system, as well as an in-depth explanation of relevant concepts.
 
 >To help us measure our progress and improve Substrate in Bits content, 
-please fill out our living [feedback form](https://airtable.com/appc45lFGS94WumrY/tblnuIR8lSd4TX7IR/viwqMQuAR6zSDn765?blocks=hide). 
+please fill out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD). 
 It will only take 2 minutes of your time. Thank you!
 
 ## Reproducing errors
