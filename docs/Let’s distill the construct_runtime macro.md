@@ -15,7 +15,7 @@ The **`construct_runtime!`** macro is an essential part of building a Substrate 
 
 In this article, we’ll take a look at what happens when this macro is not provided with sufficient information required for your runtime compile, as well as in-depth information about this macro and how to configure it to make sure your runtime works as intended.
 
-> To help us measure our progress and improve Substrate in Bits content, please fill out our living [feedback form](https://airtable.com/appc45lFGS94WumrY/tblnuIR8lSd4TX7IR/viwqMQuAR6zSDn765?blocks=hide). It will only take 2 minutes of your time. Thank you!
+> To help us measure our progress and improve Substrate in Bits content, please fill out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD). It will only take 2 minutes of your time. Thank you!
     
     
 
