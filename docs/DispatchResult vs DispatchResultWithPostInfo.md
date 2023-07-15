@@ -17,7 +17,7 @@ In practice, however, using `DispatchResult` and `DispatchResultWithPostInfo` is
 
 In this Substrate in Bits content, we will take a problem-based approach to knowing the difference between these two common return types.
 
-> To help us measure our progress and improve Substrate in Bits content, please fill our living [feedback form]([https://airtable.com/appc45lFGS94WumrY/tblnuIR8lSd4TX7IR/viwqMQuAR6zSDn765?blocks=hide](https://airtable.com/appc45lFGS94WumrY/tblnuIR8lSd4TX7IR/viwqMQuAR6zSDn765?blocks=hide). It will only take 2 minutes of your time. Thank you!
+> To help us measure our progress and improve Substrate in Bits content, please fill our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD). It will only take 2 minutes of your time. Thank you!
 
 ## Reproducing errors
 
