@@ -14,7 +14,7 @@ It is common practice to store units of value on the blockchain as fungible asse
 
 This guide takes an error-based approach to walk you through essential components when handling fungible assets in a substrate pallet. We will also highlight important substrate APIs and FRAME pallets to consider when working with fungible assets.
 
->Help us measure our progress and improve Substrate in Bits content by filling out our living [feedback form](https://airtable.com/appc45lFGS94WumrY/tblnuIR8lSd4TX7IR/viwqMQuAR6zSDn765?blocks=hide). Thank you!
+>Help us measure our progress and improve Substrate in Bits content by filling out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD). Thank you!
 
 ## Reproducing errors
 
