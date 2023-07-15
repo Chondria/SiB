@@ -15,7 +15,7 @@ When implementing a pallet for your runtime, there are things to be kept in plac
 
 In this guide, we’ll take an error-based approach to understand what happens when you don’t configure the pallets correctly for your runtime.
 
-> To help us measure our progress and improve Substrate in Bits content, please fill out our living [feedback form](https://airtable.com/appc45lFGS94WumrY/tblnuIR8lSd4TX7IR/viwqMQuAR6zSDn765?blocks=hide). It will only take 2 minutes of your time. Thank you!
+> To help us measure our progress and improve Substrate in Bits content, please fill out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD). It will only take 2 minutes of your time. Thank you!
 
 
 ## Reproducing errors
@@ -173,4 +173,4 @@ To learn more about the concepts discussed in this guide, here are some resource
 - [Configure runtime constants](https://docs.substrate.io/reference/how-to-guides/basics/configure-runtime-constants/)
 - [Add a pallet to the runtime.](https://docs.substrate.io/tutorials/build-application-logic/add-a-pallet/)
 
-> To help us measure our progress and improve Substrate in Bits content, please fill out our living [feedback form](https://airtable.com/appc45lFGS94WumrY/tblnuIR8lSd4TX7IR/viwqMQuAR6zSDn765?blocks=hide). It will only take 2 minutes of your time. Thank you!
+> To help us measure our progress and improve Substrate in Bits content, please fill out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD). It will only take 2 minutes of your time. Thank you!
