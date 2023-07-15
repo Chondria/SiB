@@ -16,7 +16,7 @@ Substrate provides a comprehensive set of APIs that allow you to set up a test e
 
 In this guide, we will walk through a common problem related to mocking a runtime and testing a substrate pallet. We will also have an in-depth look at some crucial APIs that substrate exposes for testing and how to leverage them for complex testing scenarios.
 
->Help us measure our progress and improve Substrate in Bits content by filling out our living [feedback form](https://airtable.com/appc45lFGS94WumrY/tblnuIR8lSd4TX7IR/viwqMQuAR6zSDn765?blocks=hide). Thank you!
+>Help us measure our progress and improve Substrate in Bits content by filling out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD). Thank you!
 
 
 ## Reproducing errors
