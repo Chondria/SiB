@@ -17,7 +17,7 @@ In essence, **`#[pallet::storage]`** maps a specific type to a specific key in t
 
 Let’s take an error-based approach to understand why this macro is needed and what happens when it’s not included when creating storage items.
 
-To help us measure our progress and improve Substrate in Bits content, please fill out our living [feedback form](https://airtable.com/appc45lFGS94WumrY/tblnuIR8lSd4TX7IR/viwqMQuAR6zSDn765?blocks=hide). It will only take 2 minutes of your time. Thank you!
+To help us measure our progress and improve Substrate in Bits content, please fill out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD). It will only take 2 minutes of your time. Thank you!
 
 ## Reproducing errors[](https://polkadot.study/#reproducing-errors)
 
