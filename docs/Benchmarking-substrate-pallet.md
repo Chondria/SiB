@@ -16,7 +16,7 @@ Substrate enables runtime engineers to provide deterministic and verifiable guar
 
 In this guide, we will break down important steps involved in substrate pallet benchmarking using a problem-based approach. We will also highlight some of the internal processes of benchmarking a substrate pallet and substrate benchmarking components that can be leveraged to benchmark a substrate pallet.
 
->Help us measure our progress and improve Substrate in Bits content by filling out our living [feedback form](https://airtable.com/appc45lFGS94WumrY/tblnuIR8lSd4TX7IR/viwqMQuAR6zSDn765?blocks=hide). Thank you!
+>Help us measure our progress and improve Substrate in Bits content by filling out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD). Thank you!
 
 ## Reproducing errors
 
