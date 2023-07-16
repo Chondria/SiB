@@ -22,6 +22,9 @@ By the end of this first part of the sub-series, you should:
 - Have set up a new Rust project for your blockchain,
 - Have configured the project’s runtime to be able to compile to WebAssembly (WASM).
 
+**You can check out this project's repository [here](https://github.com/abdbee/Lancr)**
+
+
 > We’re inviting you to [fill out our living feedback](https://airtable.com/shr7CrrZ5zqlhWEUD) form to help us measure our progress and improve Substrate in Bits content. It will only take 2 minutes of your time. Thank you!
 
 ## Environment set up.
