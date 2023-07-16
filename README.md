@@ -45,6 +45,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | 8 | Working with Assets on Substrate | Fungible Tokens | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/working-with-assets-on-substrate) |
 | 9 | Let’s distill the #[pallet::storage] macro | Macros | [Visit](#content) |
 | 10 | Benchmarking substrate pallet | Benchmarking | [Visit](#content) |
+| 11 | Build a substrate node from scratch (sub-series) part 1 | Nodes | [Visit](#content) |
 
 
 
