@@ -2,7 +2,7 @@
 tags:
   - substrate
 keywords: [polkadot, substrate, hashing algorithm, storage, pallets]
-description: Blake2_128 vs Blake2_128_concat
+description: Twox64Concat vs Blake2_128_concat
 updated: 2023-05-29
 author: cenwadike
 duration: 3h

@@ -568,6 +568,3 @@ To learn more about testing in substrate, check out these resources:
 
 
 > We’re inviting you to fill out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD) to help us measure our progress and improve Substrate in Bits content. It will only take 2 minutes of your time. Thank you!
-
-
-
