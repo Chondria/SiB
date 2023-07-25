@@ -129,7 +129,7 @@ This is merely an umbrella trait for traits that define each method in `Hooks` t
 You can have a mental picture of this like so:
 
 ```rust
-pub Umbrella Hooks {
+impl Hooks {
   pub trait OnInitialize<BlockNumber> {
     // Provided method
     fn on_initialize(_n: BlockNumber) -> Weight { ... }
@@ -149,6 +149,14 @@ When we implement a pallet hook as shown below, we are leveraging substrate to h
 ```rust
   #[pallet::hooks]
   impl<T: Config> Hooks<T::BlockNumber> for Pallet<T> {
+      // -------- snip -----------
+  }
+```
+
+You could also use only the traits relevant to your pallet like so:
+```rust
+  #[pallet::hooks]
+  impl<T: Config> OnInitialize<T::BlockNumber> for Pallet<T> {
       // -------- snip -----------
   }
 ```
