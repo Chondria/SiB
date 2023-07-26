@@ -129,7 +129,7 @@ This is merely an umbrella trait for traits that define each method in `Hooks` t
 You can have a mental picture of this like so:
 
 ```rust
-impl Hooks {
+mod Hooks {
   pub trait OnInitialize<BlockNumber> {
     // Provided method
     fn on_initialize(_n: BlockNumber) -> Weight { ... }
