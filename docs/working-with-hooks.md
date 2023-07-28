@@ -23,7 +23,7 @@ In this guide, we will break down important concepts about substrate pallet hook
 
 ### Environment and project setup
 
-To follow along with this tutorial, ensure that you have the Rust toolchain installed.
+To follow this tutorial, ensure you have the Rust toolchain installed.
 
 - Visit the [substrate official documentation](https://docs.substrate.io/install/) page for the installation processes.
 
@@ -50,12 +50,12 @@ cargo build --release
 
 The setup below is a substrate pallet that implements [double-auction](https://en.wikipedia.org/wiki/Double_auction) for electrical energy.
 
-The seller gets matched (and their electricity is sold to the highest bidder) when the auction period is over.
+When the auction period is over, the seller gets matched (and their electricity is sold to the highest bidder).
 
 Auctions to be executed are stored in *`AuctionsExecutionQueue`*. 
-When an auction period is over, it is taken from the *`AuctionsExecutionQueue`* and matched to the highest bidder.
+When an auction is over, it is taken from the *`AuctionsExecutionQueue`* and matched to the highest bidder.
 
-Using *`on_finalize`* hook, the runtime checks if any auction is over, and executes the auction by calling *`on_auction_ended`*.
+Using the *`on_finalize`* hook, the runtime checks if any auction is over, and executes the auction by calling *`on_auction_ended`*.
 
 *`on_auction_ended`* is executed after all runtime extrinsic have been executed. 
 
@@ -125,7 +125,8 @@ To view the full implementation details of substrate *`Hooks`* trait, check the 
 
 ## Going in-depth
 
-This is merely an umbrella trait for traits that define each method in `Hooks` trait. 
+Substrate `Hooks` trait is merely an umbrella for different traits that we can use in a pallet. Each method defined in substrate `Hooks` is exposed by a distinct trait with a similar name. 
+
 You can have a mental picture of this like so:
 
 ```rust
@@ -177,6 +178,7 @@ In a nutshell, it is the `frame_executive` that oversees the execution of hooks 
 ## Summary
 We used a double auction pallet to demonstrate how to couple substrate hooks to a pallet. We explored substrate pallet hooks and developed an understanding of:
 - different methods exposed by substrate `Hooks` trait.
+- how to use substrate `Hooks` in a pallet.
 - how hooks are executed by [frame-executive](https://paritytech.github.io/substrate/master/frame_executive/index.html).
 
 Substrate pallet hooks are a powerful and useful set of tools that can be used to add dynamism to runtime execution. `Hooks` are highly extensible facilitating different use cases.
@@ -184,4 +186,4 @@ Substrate pallet hooks are a powerful and useful set of tools that can be used t
 To learn more about testing in substrate, check out these resources:
 - [Substrate Hooks Trait implementation](https://docs.substrate.io/reference/how-to-guides/weights/add-benchmarks/)
 - [Substrate Hooks Trait documentation](https://docs.substrate.io/test/benchmark/)
-- [Frame executive](https://paritytech.github.io/substrate/master/frame_executive/index.html)
+- [Frame Executive](https://paritytech.github.io/substrate/master/frame_executive/index.html)
