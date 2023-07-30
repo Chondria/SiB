@@ -50,37 +50,39 @@ cargo build --release
 
 The setup below is a substrate pallet that implements [double-auction](https://en.wikipedia.org/wiki/Double_auction) for electrical energy.
 
-When the auction period is over, the seller gets matched (and their electricity is sold to the highest bidder).
+At the end of an auction, the seller gets matched (and their electricity is sold) to the highest bidder.
 
 Auctions to be executed are stored in *`AuctionsExecutionQueue`*. 
-When an auction is over, it is taken from the *`AuctionsExecutionQueue`* and matched to the highest bidder.
+When an auction ends, it is taken from the *`AuctionsExecutionQueue`* and matched to the highest bidder.
 
-Using the *`on_finalize`* hook, the runtime checks if any auction is over, and executes the auction by calling *`on_auction_ended`*.
+Using the *`on_finalize`* hook, the runtime checks if any auction is over and executes the auction by calling *`on_auction_ended`*.
 
 *`on_auction_ended`* is executed after all runtime extrinsic have been executed. 
 
-*`on_auction_ended`* is also executed within the constraints of the `Weight` assigned to it in *`on_initialize`*
+*`on_auction_ended`* is also executed within the constraints of the `Weight` assigned to it in *`on_initialize`* hook.
 
 
 ## Understanding substrate pallet hooks
 
-Substrate provides a highly extensible interface that provides a comprehensive set of runtime states to which arbitrary execution could be anchored.
+Substrate provides a highly extensible interface with a comprehensive set of runtime states to which arbitrary execution could be anchored.
 
-This interface is implemented like so:
+This `Hooks` interface is implemented like so:
 ```rust
   pub trait Hooks<BlockNumber> {
     // called at the very beginning of block execution. 
     fn on_initialize(_n: BlockNumber) -> Weight { ... }
 
-    // called at the very end of block execution. 
-    // requires on_initialize
+    // called at the very end of block execution.
+    // after all extrinsics have been executed.
+    // requires on_initialize to assign weight to dispatch.
     fn on_finalize(_n: BlockNumber) { ... }
 
     // consume a block’s idle time.
-    // run when the block is being finalized, before on_finalize
+    // after all extrinsics have been executed.
+    // run when the block is being finalized, before on_finalize.
     fn on_idle(_n: BlockNumber, _remaining_weight: Weight) -> Weight { ... }
 
-    // hooks for runtime upgrades
+    // hooks for runtime upgrades.
     fn on_runtime_upgrade() -> Weight { ... }    
     fn pre_upgrade() -> Result<Vec<u8>, TryRuntimeError> { ... }
     fn post_upgrade(_state: Vec<u8>) -> Result<(), TryRuntimeError> { ... }
@@ -91,14 +93,14 @@ This interface is implemented like so:
     // useful for anchoring off-chain workers.
     fn offchain_worker(_n: BlockNumber) { ... }
 
-    // to check the integrity of this pallet’s configuration
+    // to check the integrity of a pallet’s configuration.
     fn integrity_test() { ... }
   }
 ```
 
 For full Trait documentation, check the [docs](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Hooks.html)
 
-You can couple substrate `Hooks` trait into your pallet and implement the *`on_initialize`* and *`on_finalize`* like so:
+We coupled substrate `Hooks` trait into our example pallet and implemented the *`on_initialize`* and *`on_finalize`* like so:
 
 ```rust
   #[pallet::hooks]
@@ -125,7 +127,7 @@ To view the full implementation details of substrate *`Hooks`* trait, check the 
 
 ## Going in-depth
 
-Substrate `Hooks` trait is merely an umbrella for different traits that we can use in a pallet. Each method defined in substrate `Hooks` is exposed by a distinct trait with a similar name. 
+Substrate `Hooks` trait is merely an umbrella for different traits that can be used in a pallet. Each method defined in substrate `Hooks` is exposed by a distinct trait with a similar name. 
 
 You can have a mental picture of this like so:
 
@@ -145,7 +147,7 @@ mod Hooks {
 }
 ```
 
-When we implement a pallet hook as shown below, we are leveraging substrate to hide the complexity of implementing multiple traits for our pallet:
+When we implement a pallet hooks as shown below, we are leveraging substrate to hide the complexity of implementing multiple traits for our pallet:
 
 ```rust
   #[pallet::hooks]
@@ -172,16 +174,16 @@ At execution, substrate runtime orchestrator implemented as *`frame_executive`* 
 - Finalize a block.
 - Start an off-chain worker.
 
-In a nutshell, it is the `frame_executive` that oversees the execution of hooks defined in our pallets.
+In a nutshell, the `frame_executive` oversees the execution of hooks defined in our pallets.
 
 
 ## Summary
-We used a double auction pallet to demonstrate how to couple substrate hooks to a pallet. We explored substrate pallet hooks and developed an understanding of:
+We used a double auction pallet to demonstrate how to couple substrate hooks to a pallet. We explored substrate pallet hooks and developed an understanding of
 - different methods exposed by substrate `Hooks` trait.
 - how to use substrate `Hooks` in a pallet.
 - how hooks are executed by [frame-executive](https://paritytech.github.io/substrate/master/frame_executive/index.html).
 
-Substrate pallet hooks are a powerful and useful set of tools that can be used to add dynamism to runtime execution. `Hooks` are highly extensible facilitating different use cases.
+Substrate pallet hooks are a powerful and useful set of tools that can add dynamism to runtime execution. `Hooks` are highly extensible for different use cases.
 
 To learn more about testing in substrate, check out these resources:
 - [Substrate Hooks Trait implementation](https://docs.substrate.io/reference/how-to-guides/weights/add-benchmarks/)
