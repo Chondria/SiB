@@ -43,11 +43,11 @@ By following these steps, you can test out the code samples for each Substrate i
 | 6 | Running unit tests on substrate pallet | Unit test | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/Running-unit-test-on-substrate-pallet) |
 | 7 | Substrate Pallets Configuration: An Error-based Approach | Pallet integration | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/Substrate%20Pallets%20Configuration:%20An%20Error-based%20Approach) |
 | 8 | Working with Assets on Substrate | Fungible Tokens | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/working-with-assets-on-substrate) |
-| 9 | Let’s distill the #[pallet::storage] macro | Macros | [Visit](#content) |
-| 10 | Benchmarking substrate pallet | Benchmarking | [Visit](#content) |
-| 11 | Build a substrate node from scratch (sub-series) part 1 | Nodes | [Visit](#content) |
-| 12 | Working with substrate pallet hooks | Hooks | [Visit](#content) |
-| 13 | Deconstructing pallet genesis config | Configuration | [Visit](#content) |
+| 9 | Let’s distill the #[pallet::storage] macro | Macros | [Visit](./docs/Let’s%20distill%20the%20pallet%20storage%20macro.md) |
+| 10 | Benchmarking substrate pallet | Benchmarking | [Visit](./docs/Benchmarking-substrate-pallet.md) |
+| 11 | Build a substrate node from scratch (sub-series) part 1 | Nodes | [Visit](./docs/Build%20a%20substrate%20node%20from%20scratch%20(sub-series)%20part%201.md) |
+| 12 | Working with substrate pallet hooks | Hooks | [Visit](./docs/working-with-hooks.md) |
+| 13 | Deconstructing pallet genesis config | Configuration | [Visit](./docs/deconstructing-pallet-genesis-config.md) |
 
 
 
