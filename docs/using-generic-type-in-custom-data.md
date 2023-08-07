@@ -91,7 +91,7 @@ The pallet has a unique data type (ie, BookSummary ) which was defined like so:
 2. `BlockNumber`: which is used to record when a book was archived.
 The function body does the following:
 
-The error we’re getting above originates from line 72:
+The error we’re getting above originated from line 72:
 
 ```rust
 #[pallet::storage]

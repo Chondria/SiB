@@ -47,6 +47,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | 10 | Benchmarking substrate pallet | Benchmarking | [Visit](#content) |
 | 11 | Build a substrate node from scratch (sub-series) part 1 | Nodes | [Visit](#content) |
 | 12 | Working with substrate pallet hooks | Hooks | [Visit](#content) |
+| 13 | Deconstructing pallet genesis config | Configuration | [Visit](#content) |
 
 
 

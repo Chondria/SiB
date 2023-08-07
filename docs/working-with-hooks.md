@@ -127,8 +127,7 @@ To view the full implementation details of substrate *`Hooks`* trait, check the 
 
 ## Going in-depth
 
-Substrate `Hooks` trait is merely an umbrella for different traits that can be used in a pallet. Each method defined in substrate `Hooks` is exposed by a distinct trait with a similar name. 
-
+This is merely an umbrella trait for traits that define each method in `Hooks` trait. 
 You can have a mental picture of this like so:
 
 ```rust
@@ -185,7 +184,7 @@ We used a double auction pallet to demonstrate how to couple substrate hooks to 
 
 Substrate pallet hooks are a powerful and useful set of tools that can add dynamism to runtime execution. `Hooks` are highly extensible for different use cases.
 
-To learn more about testing in substrate, check out these resources:
+To learn more about substrate hooks, check out these resources:
 - [Substrate Hooks Trait implementation](https://docs.substrate.io/reference/how-to-guides/weights/add-benchmarks/)
 - [Substrate Hooks Trait documentation](https://docs.substrate.io/test/benchmark/)
 - [Frame Executive](https://paritytech.github.io/substrate/master/frame_executive/index.html)
