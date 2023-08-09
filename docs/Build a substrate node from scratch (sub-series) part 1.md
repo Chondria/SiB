@@ -151,7 +151,6 @@ std = [
 
 ```rust
 
-#[cfg(feature = "std")]
 fn main() {
 	substrate_wasm_builder::WasmBuilder::new()
 		.with_current_project()
