@@ -134,7 +134,7 @@ To ensure that your runtime can compile into WASM:
 
 ```rust
 [build-dependencies]
-substrate-wasm-builder = { version = "5.0.0-dev", git = "https://github.com/paritytech/substrate.git", optional = true , branch = "polkadot-v0.9.42" }
+substrate-wasm-builder = { version = "5.0.0-dev", git = "https://github.com/paritytech/substrate.git", optional = true , branch = "polkadot-v1.0.0" }
 ```
 
 - Enable the `std` feature for `substrate-wasm-builder`
