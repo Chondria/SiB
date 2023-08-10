@@ -89,7 +89,6 @@ The pallet has a unique data type (ie, BookSummary ) which was defined like so:
 `BoookSummary` uses two FRAME generic types:
 1. `AccountId`: which is used to record who archived a book.
 2. `BlockNumber`: which is used to record when a book was archived.
-The function body does the following:
 
 The error we’re getting above originated from line 72:
 
@@ -104,7 +103,7 @@ pub(super) type ArchiveStore<T: Config> = StorageMap<
     >;
 ```
 
-Rust compiler could not know where the type `AccountId` and `BlockNumber` within the scope of the custom data type `ArchiveStore`. It requires that `AccountId` and `BlockNumber` types are brought into the scope of our custom struct.
+Rust compiler could not find `AccountId` and `BlockNumber` generic types within the scope of the custom data type `ArchiveStore`. It requires that `AccountId` and `BlockNumber` types are brought into the scope of our custom struct.
 
 Because `AccountId` and `BlockNumber` are defined by default in our pallet `Config` trait, we can use them within the scope of our custom data type.
 
@@ -156,8 +155,11 @@ A simple fix is to ensure that your `Pallet` struct has this `#[pallet::without_
 #[pallet::without_storage_info]
 pub struct Pallet<T>(_);
 ```
+This will allow you to manually check and restrict a vector's maximum capacity.
 
 An alternative fix would be replacing `Vec<u8>` with `BoundedVec<u8>`. Using `BoundedVec<u8>` allows parity SCALE codec to decode the length of the vector.
+
+Ensure you use regular `vec` to accept extrinsic parameters.
 
 
 2. trait bound `TypeInfo` is not satisfied; `TypeInfo` is not implemented for `custom_struct`.
@@ -179,7 +181,7 @@ pub struct BookSummary<AccountId, BlockNumber> {
 
 3. `OptionQuery` vs `ValueQuery` vs `ResultQuery`
 
-- `OptionQuery` should be your preferred when defining custom data without a default implementation. A query from such data, will either `Some` value if storage contains a value or `None` if there's no value in storage.
+- `OptionQuery` should be your preferred when defining custom data without a default implementation. A query for such data, will either `Some` value if storage contains a value or `None` if there's no value in storage.
 
 - `ValueQuery` always returns a value from storage or causes the program to panic loudly. You can use ValueQuery to return the default value if you have configured a specific default for a storage item or return the value configured with the OnEmpty generic.
 
@@ -190,7 +192,7 @@ pub struct BookSummary<AccountId, BlockNumber> {
 
 In this guide, you:
 
-- Encountered a compilation error in the template due to not **`Config`** type being out of the scope of a custom data type.
+- Encountered a compilation error in the template due to **`Config`** type being out of the scope of a custom data type.
 - To fix the error, you replaced the problematic line of code with the appropriate line that include the generic type parameter **`<T>`**.
  
 Also, you learned that:
