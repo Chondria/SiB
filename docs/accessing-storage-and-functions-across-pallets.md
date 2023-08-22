@@ -127,7 +127,7 @@ We’ll go into more depth later, but for now, let’s solve the error.
     with 
     
     ```rust
-    ensure!(pallet_identity::Pallet::<T>::has_identity(&sender,1), Error::NotAuthorized);
+    ensure!(pallet_identity::Pallet::<T>::has_identity(&sender,1), Error::<T>::NotAuthorized);
     ```
     
 - Replace
@@ -139,7 +139,7 @@ We’ll go into more depth later, but for now, let’s solve the error.
     with 
     
     ```rust
-    pallet_balances::Pallet::<T>::transfer(OriginFor::from(Some(sender).into()), lookup_dest, value)?;
+    pallet_balances::Pallet::<T>::transfer(OriginFor::<T>::from(Some(sender).into()), lookup_dest, value)?;
     ```
     
 - Re-compile the node
