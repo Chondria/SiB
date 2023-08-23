@@ -143,7 +143,7 @@ Notice that no lifetime is required for `Error`.
 
 
 ### Genesis config for instantiable pallet
-Unlike the genesis configuration for a previous [guide](#/), the genesis configuration using types from the `Config` trait must the generic type *I* with a static lifetime like so:
+Unlike the genesis configuration for a previous [guide](./deconstructing-pallet-genesis-config.md), the genesis configuration using types from the `Config` trait must the generic type *I* with a static lifetime like so:
 
 ```rust 
 	#[pallet::genesis_config]
@@ -171,7 +171,7 @@ Notice how differently *I* is used on *GenesisConfig* struct like so ```GenesisC
 The code snippet below demonstrates how we can implement multiple instances of the [`pallet_balances`](https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs).
 
 ```rust
-// ----------------snip----------
+// -------------snip--------------------
 
 type MainToken = pallet_balances::Instance1;
 impl pallet_balances::Config<MainToken> for Runtime {
@@ -198,10 +198,15 @@ impl pallet_balances::Config<DerivativeToken> for Runtime {
 	type AccountStore = System;
 	type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
 }
+
+// -------------snip--------------------
+
 ```
 
 In comparison a single instance of [`pallet_balances`](https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs) like so:
 ```rust
+// -------------snip--------------------
+
 impl pallet_balances::Config for Runtime {
 	type MaxLocks = ConstU32<50>;
 	type MaxReserves = ();
@@ -219,6 +224,8 @@ impl pallet_balances::Config for Runtime {
 	type RuntimeHoldReason = ();
 	type MaxHolds = ();
 }
+
+// -------------snip--------------------
 ```
 
 ## Common pitfalls when using instantiable pallets
@@ -240,13 +247,7 @@ We developed an understanding of:
 
 
 To learn more about instantiable pallets, check out these resources:
-- [Pallet](https://paritytech.github.io/substrate/master/frame_system/pallet/index.html)
-- [Collective Pallet](https://)
-- [Balances Pallet](https://)
-- [Polkadot Collective](https://)
-
-
-
-
-
-
+- [Pallet struct](https://paritytech.github.io/substrate/master/frame_system/pallet/index.html)
+- [Collective Pallet](https://github.com/paritytech/substrate/blob/master/frame/collective/src/lib.rs)
+- [Balances Pallet](https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs)
+- [Multiple Token Implementation](https://github.com/psfblair/polkadot-academy-final-exam/blob/paul-blair-liquid-staking/runtime/src/lib.rs)
