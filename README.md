@@ -48,7 +48,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | 11 | Build a substrate node from scratch (sub-series) part 1 | Nodes | [Visit](./docs/Build%20a%20substrate%20node%20from%20scratch%20(sub-series)%20part%201.md) |
 | 12 | Working with substrate pallet hooks | Hooks | [Visit](./docs/working-with-hooks.md) |
 | 13 | Deconstructing pallet genesis config | Configuration | [Visit](./docs/deconstructing-pallet-genesis-config.md) |
-| 14 | Understanding substrate pallet instance | Instance | [Visit](./docs/understanding-substrate-pallet-instance.md) |
+| 14 | Understanding substrate pallet instance | Pallet Instance | [Visit](./docs/understanding-substrate-pallet-instance.md) |
 
 
 
