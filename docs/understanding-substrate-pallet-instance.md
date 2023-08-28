@@ -54,14 +54,14 @@ The seller gets matched (and their electricity is sold to the highest bidder) wh
 Auctions to be executed are stored in *`AuctionsExecutionQueue`*. 
 When an auction is over, it is taken from the *`AuctionsExecutionQueue`* and matched to the highest bidder.
 
-Use the setup above is used as a reference if you get stuck.
+Use the setup above as reference to follow along if you get stuck.
 
 
 ## Making Pallet instantiable
 Unlike regular pallets that have a single instance on a runtime, instantiable pallets must provide clues to the runtime. 
-This clue is provided by adding an _instantiable_ trait *`I`*.
+This clue is provided by adding an _instantiable_ generic *`I`*.
 
-The trait *`I`* is used to provide a lifetime for a pallet’s generic types and its configuration T *T*.
+The generic *`I`* is used to provide a lifetime for a pallet’s generic types and its configuration T *T*.
 
 We can add the generic type *`I`* to the `Pallet` struct like so:
 
