@@ -49,6 +49,8 @@ By following these steps, you can test out the code samples for each Substrate i
 | 12 | Working with substrate pallet hooks | Hooks | [Visit](./docs/working-with-hooks.md) |
 | 13 | Deconstructing pallet genesis config | Configuration | [Visit](./docs/deconstructing-pallet-genesis-config.md) |
 | 14 | Understanding substrate pallet instance | Pallet Instance | [Visit](./docs/understanding-substrate-pallet-instance.md) |
+| 15 | Dealing with runtime constants | Runtime Constants | [Visit](./docs/Dealing%20with%20runtime%20constants.md) |
+| 16 | Writing efficient storage items | Storage Items | [Visit](#table-of-technical-content) |
 
 
 
