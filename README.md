@@ -50,7 +50,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | 13 | Deconstructing pallet genesis config | Configuration | [Visit](./docs/deconstructing-pallet-genesis-config.md) |
 | 14 | Understanding substrate pallet instance | Pallet Instance | [Visit](./docs/understanding-substrate-pallet-instance.md) |
 | 15 | Dealing with runtime constants | Runtime Constants | [Visit](./docs/Dealing%20with%20runtime%20constants.md) |
-| 16 | Working efficiently with storage items | Storage Items | [Visit](#table-of-technical-content) |
+| 16 | Working efficiently with storage items | Storage | [Visit](https://github.com/Chondria/SiB/blob/main/docs/Working%20efficiently%20with%20storage%20items.md) |
 
 
 
