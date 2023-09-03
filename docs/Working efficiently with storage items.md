@@ -62,7 +62,7 @@ cargo build --release
     - MemberId: 1000
     
 - Submit the transaction
-- 
+  
 - Now repeat the steps above for Bob’s account. (i.e., set the memberId to 1000 too).
 
 You’ll immediately notice that there’s a problem. Multiple accounts can have the same member IDs, which is meant to be unique for each account. If you query the `templateModule.idOf` storage item, you’ll notice that multiple accounts have the same member ID of 1000.
