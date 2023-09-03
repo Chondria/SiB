@@ -1,3 +1,14 @@
+---
+tags:
+  - substrate
+keywords: [polkadot, substrate, node, storage, runtime]
+description: Working efficiently with storage items
+updated: 2023-09-03
+author: abdbee
+duration: 3h
+level: intermediate
+---
+
 
 # Working efficiently with storage items
 
