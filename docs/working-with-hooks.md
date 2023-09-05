@@ -30,7 +30,7 @@ To follow this tutorial, ensure you have the Rust toolchain installed.
 - Clone the project [repository](https://github.com/cenwadike/double-auction).
 
 ```rust
-git clone https://github.com/cenwadike/double-auction
+git clone https://github.com/cenwadike/double-auction-pallet
 ```
 
 - Navigate into the project’s directory.
