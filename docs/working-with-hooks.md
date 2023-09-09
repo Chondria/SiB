@@ -10,14 +10,20 @@ level: intermediate
 ---
 
 # Working with substrate pallet hooks
-Substrate pallet hooks are a powerful set of tools substrate provides that facilitates automatic runtime execution when some condition is met.
 
-Substrate pallet hooks enable runtime engineers to implement automatic runtime execution of arbitrary processes under deterministic conditions and with a verifiable guarantee of runtime safety.
+Substrate pallet hooks are a powerful set of tools substrate provides that
+facilitates automatic runtime execution when some condition is met.
 
-In this guide, we will break down important concepts about substrate pallet hooks and dive into how hooks can be implemented and executed on a runtime.
+Substrate pallet hooks enable runtime engineers to implement automatic runtime
+execution of arbitrary processes under deterministic conditions and with a
+verifiable guarantee of runtime safety.
 
->Help us measure our progress and improve Substrate in Bits content by filling out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD). Thank you!
+In this guide, we will break down important concepts about substrate pallet
+hooks and dive into how hooks can be implemented and executed on a runtime.
 
+>Help us measure our progress and improve Substrate in Bits content by filling
+out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD).
+Thank you!
 
 ## Reproducing setup
 
@@ -25,7 +31,8 @@ In this guide, we will break down important concepts about substrate pallet hook
 
 To follow this tutorial, ensure you have the Rust toolchain installed.
 
-- Visit the [substrate official documentation](https://docs.substrate.io/install/) page for the installation processes.
+- Visit the [substrate official documentation](https://docs.substrate.io/install/)
+page for the installation processes.
 
 - Clone the project [repository](https://github.com/cenwadike/double-auction).
 
@@ -35,38 +42,45 @@ git clone https://github.com/cenwadike/double-auction-pallet
 
 - Navigate into the project’s directory.
 
-```
+```bash
 cd double-auction
 ```
 
 - Run the command below to build the pallet.
 
-```
+```bash
 cargo build --release
 ```
 
-
 ## Getting some context
 
-The setup below is a substrate pallet that implements [double-auction](https://en.wikipedia.org/wiki/Double_auction) for electrical energy.
+The setup below is a substrate pallet that implements
+[double-auction](https://en.wikipedia.org/wiki/Double_auction) for electrical
+energy.
 
-At the end of an auction, the seller gets matched (and their electricity is sold) to the highest bidder.
+At the end of an auction, the seller gets matched
+(and their electricity is sold) to the highest bidder.
 
-Auctions to be executed are stored in *`AuctionsExecutionQueue`*. 
-When an auction ends, it is taken from the *`AuctionsExecutionQueue`* and matched to the highest bidder.
+Auctions to be executed are stored in *`AuctionsExecutionQueue`*.
+When an auction ends, it is taken from the *`AuctionsExecutionQueue`* and
+matched to the highest bidder.
 
-Using the *`on_finalize`* hook, the runtime checks if any auction is over and executes the auction by calling *`on_auction_ended`*.
+Using the *`on_finalize`* hook, the runtime checks if any auction is over and
+executes the auction by calling *`on_auction_ended`*.
 
-*`on_auction_ended`* is executed after all runtime extrinsic have been executed. 
+*`on_auction_ended`* is executed after all runtime extrinsic have been
+executed.
 
-*`on_auction_ended`* is also executed within the constraints of the `Weight` assigned to it in *`on_initialize`* hook.
-
+*`on_auction_ended`* is also executed within the constraints of the
+`Weight` assigned to it in *`on_initialize`* hook.
 
 ## Understanding substrate pallet hooks
 
-Substrate provides a highly extensible interface with a comprehensive set of runtime states to which arbitrary execution could be anchored.
+Substrate provides a highly extensible interface with a comprehensive set of
+runtime states to which arbitrary execution could be anchored.
 
 This `Hooks` interface is implemented like so:
+
 ```rust
   pub trait Hooks<BlockNumber> {
     // called at the very beginning of block execution. 
@@ -98,9 +112,11 @@ This `Hooks` interface is implemented like so:
   }
 ```
 
-For full Trait documentation, check the [docs](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Hooks.html)
+For full Trait documentation, check the
+[docs](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Hooks.html)
 
-We coupled substrate `Hooks` trait into our example pallet and implemented the *`on_initialize`* and *`on_finalize`* like so:
+We coupled substrate `Hooks` trait into our example pallet and implemented the
+*`on_initialize`* and *`on_finalize`* like so:
 
 ```rust
   #[pallet::hooks]
@@ -122,12 +138,13 @@ We coupled substrate `Hooks` trait into our example pallet and implemented the *
   }
 ```
 
-To view the full implementation details of substrate *`Hooks`* trait, check the [docs](https://paritytech.github.io/substrate/master/src/frame_support/traits/hooks.rs.html)
-
+To view the full implementation details of substrate *`Hooks`* trait, check
+the [docs](https://paritytech.github.io/substrate/master/src/frame_support/traits/hooks.rs.html)
 
 ## Going in-depth
 
-This is merely an umbrella trait for traits that define each method in `Hooks` trait. 
+This is merely an umbrella trait for traits that define each method in the
+`Hooks` trait.
 You can have a mental picture of this like so:
 
 ```rust
@@ -146,7 +163,8 @@ mod Hooks {
 }
 ```
 
-When we implement a pallet hooks as shown below, we are leveraging substrate to hide the complexity of implementing multiple traits for our pallet:
+When we implement a pallet hooks as shown below, we are leveraging substrate to
+hide the complexity of implementing multiple traits for our pallet:
 
 ```rust
   #[pallet::hooks]
@@ -156,6 +174,7 @@ When we implement a pallet hooks as shown below, we are leveraging substrate to 
 ```
 
 You could also use only the traits relevant to your pallet like so:
+
 ```rust
   #[pallet::hooks]
   impl<T: Config> OnInitialize<T::BlockNumber> for Pallet<T> {
@@ -163,9 +182,12 @@ You could also use only the traits relevant to your pallet like so:
   }
 ```
 
-At execution, substrate runtime orchestrator implemented as *`frame_executive`* correctly dispatch a pallet's hook and execute any code.
+At execution, substrate runtime orchestrator implemented as *`frame_executive`*
+correctly dispatch a pallet's hook and execute any code.
 
-`frame_executive` works in conjunction with the FRAME System module and serves as the main entry point for certain runtime actions including:
+`frame_executive` works in conjunction with the FRAME System module and serves
+as the main entry point for certain runtime actions including:
+
 - Check transaction validity.
 - Initialize a block.
 - Apply extrinsics.
@@ -173,18 +195,29 @@ At execution, substrate runtime orchestrator implemented as *`frame_executive`* 
 - Finalize a block.
 - Start an off-chain worker.
 
-In a nutshell, the `frame_executive` oversees the execution of hooks defined in our pallets.
-
+In a nutshell, the `frame_executive` oversees the execution of hooks defined in
+our pallets.
 
 ## Summary
-We used a double auction pallet to demonstrate how to couple substrate hooks to a pallet. We explored substrate pallet hooks and developed an understanding of
+
+We used a double auction pallet to demonstrate how to couple substrate hooks to
+a pallet. We explored substrate pallet hooks and developed an understanding of:
+
 - different methods exposed by substrate `Hooks` trait.
 - how to use substrate `Hooks` in a pallet.
-- how hooks are executed by [frame-executive](https://paritytech.github.io/substrate/master/frame_executive/index.html).
+- how hooks are executed by
+[frame-executive](https://paritytech.github.io/substrate/master/frame_executive/index.html).
 
-Substrate pallet hooks are a powerful and useful set of tools that can add dynamism to runtime execution. `Hooks` are highly extensible for different use cases.
+Substrate pallet hooks are a powerful and useful set of tools that can add
+dynamic runtime execution. `Hooks` are highly extensible for different use
+cases.
 
 To learn more about substrate hooks, check out these resources:
+
 - [Substrate Hooks Trait implementation](https://docs.substrate.io/reference/how-to-guides/weights/add-benchmarks/)
 - [Substrate Hooks Trait documentation](https://docs.substrate.io/test/benchmark/)
 - [Frame Executive](https://paritytech.github.io/substrate/master/frame_executive/index.html)
+
+>Help us measure our progress and improve Substrate in Bits content by filling
+out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD).
+Thank you!

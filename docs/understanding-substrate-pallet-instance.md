@@ -11,13 +11,25 @@ level: intermediate
 
 # Understanding substrate pallet instance
 
-It is not uncommon to run multiple instances of a pallet at the same time on a runtime. This is demonstrated with the [collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html) that has multiple instances running on the Polkadot relay chain. Multiple instances make it possible to reuse a pallet without re-implementing it for a runtime. This allows the implementation of many use cases including having multiple tokens for a liquidity pool pallet with separate supply and distribution.
+It is not uncommon to run multiple instances of a pallet at the same time on a
+runtime. This is demonstrated with the
+[collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html)
+that has multiple instances running on the Polkadot relay chain. Multiple
+instances make it possible to reuse a pallet without re-implementing it for a
+runtime. This allows the implementation of many use cases including having
+multiple tokens for a liquidity pool pallet with separate supply and
+distribution.
 
-Substrate enables runtime developers a soft landing, providing valuable traits to implement an instantiable pallet. Substrate also provides smooth handling of unique storage for different instances of a pallet.
+Substrate enables runtime developers a soft landing, providing valuable traits
+to implement an instantiable pallet. Substrate also provides smooth handling of
+unique storage for different instances of a pallet.
 
-In this guide, we will learn how to make a pallet instantiable and highlight how we can test and implement an instantiable pallet on a substrate runtime.
+In this guide, we will learn how to make a pallet instantiable and highlight
+how we can test and implement an instantiable pallet on a substrate runtime.
 
->Help us measure our progress and improve Substrate in Bits content by filling out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD). Thank you!
+>Help us measure our progress and improve Substrate in Bits content by filling
+out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD).
+Thank you!
 
 ## Reproducing setup
 
@@ -25,7 +37,8 @@ In this guide, we will learn how to make a pallet instantiable and highlight how
 
 To follow along, ensure you have the Rust toolchain installed.
 
-- Visit the [substrate official documentation](https://docs.substrate.io/install/) page for the installation processes.
+- Visit the [substrate official documentation](https://docs.substrate.io/install/)
+page for the installation processes.
 
 - Clone the project [repository](https://github.com/cenwadike/double-auction-node).
 
@@ -47,21 +60,27 @@ cargo build --release
 
 ## Getting some context
 
-The setup above is a substrate node that implements [double-auction](https://en.wikipedia.org/wiki/Double_auction) for electrical energy.
+The setup above is a substrate node that implements
+[double-auction](https://en.wikipedia.org/wiki/Double_auction) for electrical
+energy.
 
-The seller gets matched (and their electricity is sold to the highest bidder) when the auction period is over.
+The seller gets matched (and their electricity is sold to the highest bidder)
+when the auction period is over.
 
 Auctions to be executed are stored in *`AuctionsExecutionQueue`*.
-When an auction is over, it is taken from the *`AuctionsExecutionQueue`* and matched to the highest bidder.
+When an auction is over, it is taken from the *`AuctionsExecutionQueue`* and
+matched to the highest bidder.
 
 Use the setup above as reference to follow along if you get stuck.
 
 ## Making Pallet instantiable
 
-Unlike regular pallets that have a single instance on a runtime, instantiable pallets must provide clues to the runtime.
+Unlike regular pallets that have a single instance on a runtime, instantiable
+pallets must provide clues to the runtime.
 This clue is provided by adding an *instantiable* generic *`I`*.
 
-The generic *`I`* is used to provide a lifetime for a pallet’s generic types and its configuration T *T*.
+The generic *`I`* is used to provide a lifetime for a pallet’s generic types
+and its configuration T *T*.
 
 We can add the generic type *`I`* to the `Pallet` struct like so:
 
@@ -70,11 +89,13 @@ We can add the generic type *`I`* to the `Pallet` struct like so:
  pub struct Pallet<T, I = ()>(PhantomData<(T, I)>);
 ```
 
-This defines an empty `Pallet` struct on which we can define a pallet configuration and implement extrinsics.
+This defines an empty `Pallet` struct on which we can define a pallet
+configuration and implement extrinsics.
 
 ### Making Pallet Config instantiable
 
-To implement a `Config` trait compatible with our instantiable `Pallet`, we can need to add the generic type *I* like so:
+To implement a `Config` trait compatible with our instantiable `Pallet`, we can
+need to add the generic type *I* like so:
 
 ```rust
   #[pallet::config]
@@ -90,9 +111,11 @@ This approach defines a `'static` lifetime on the generic type *I*.
 
 ### Making Storage items instantiable
 
-Because storage items use types defined by the `Config` trait, we also need to add the generic type *I* to the storage definition.
+Because storage items use types defined by the `Config` trait, we also need to
+add the generic type *I* to the storage definition.
 
-Using the *`AuctionsExecutionQueue`* we can use the types defined in the `Config` trait like so:
+Using the *`AuctionsExecutionQueue`* we can use the types defined in the
+`Config` trait like so:
 
 ```rust
  #[pallet::storage]
@@ -108,11 +131,13 @@ Using the *`AuctionsExecutionQueue`* we can use the types defined in the `Config
  >;
 ```
 
-Notice that we applied the `'static` lifetime to the *`AuctionsExecutionQueue`* type definition.
+Notice that we applied the `'static` lifetime to the *`AuctionsExecutionQueue`*
+type definition.
 
 ### Events and Errors for instantiable pallet
 
-Similar to storage items, errors, and events are unique to a `Pallet`. `Events` can be defined for an instantiable `Pallet` like so:
+Similar to storage items, errors, and events are unique to a `Pallet`. `Events`
+can be defined for an instantiable `Pallet` like so:
 
 ```rust
   #[pallet::event]
@@ -146,7 +171,10 @@ Notice that no lifetime is required for `Error`.
 
 ### Genesis config for instantiable pallet
 
-Unlike the genesis configuration for a previous [guide](./deconstructing-pallet-genesis-config.md), the genesis configuration using types from the `Config` trait must the generic type *I* with a static lifetime like so:
+Unlike the genesis configuration for a previous
+[guide](./deconstructing-pallet-genesis-config.md), the genesis configuration
+using types from the `Config` trait must the generic type *I* with a static
+lifetime like so:
 
 ```rust
  #[pallet::genesis_config]
@@ -169,11 +197,14 @@ Unlike the genesis configuration for a previous [guide](./deconstructing-pallet-
  }
 ```
 
-Notice how differently *I* is used on *GenesisConfig* struct like so ```GenesisConfig<T: Config<I>, I: 'static = ()>``` vs on the `impl` like so ```impl<T: Config<I>, I: 'static>```.
+Notice how differently *I* is used on *GenesisConfig* struct like so
+```GenesisConfig<T: Config<I>, I: 'static = ()>``` vs on the `impl`
+like so ```impl<T: Config<I>, I: 'static>```.
 
 ## Adding instantiable pallet to runtime
 
-The code snippet below demonstrates how we can implement multiple instances of the [`pallet_balances`](https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs).
+The code snippet below demonstrates how we can implement multiple instances of
+the [`pallet_balances`](https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs).
 
 ```rust
 // -------------snip--------------------
@@ -208,7 +239,9 @@ impl pallet_balances::Config<DerivativeToken> for Runtime {
 
 ```
 
-In comparison a single instance of [`pallet_balances`](https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs) like so:
+In comparison a single instance of
+[`pallet_balances`](https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs)
+like so:
 
 ```rust
 // -------------snip--------------------
@@ -236,14 +269,21 @@ impl pallet_balances::Config for Runtime {
 
 ## Common pitfalls when using instantiable pallets
 
-Because blockchain uses unique prefixes to keep track of different storage, care must be taken to prevent two or more instances writing to the same storage item or the storage `trie`.
+Because blockchain uses unique prefixes to keep track of different storage,
+care must be taken to prevent two or more instances writing to the same
+storage item or the storage `trie`.
 
-A way to avoid this issue is to assign a unique prefix to each instance of a `Pallet` as shown with `pallet_balances` [here](#adding-instantiable-pallet-to-runtime)
+A way to avoid this issue is to assign a unique prefix to each instance of a
+`Pallet` as shown with `pallet_balances`
+[here](#adding-instantiable-pallet-to-runtime)
 
 ## Summary
 
-We transformed a regular pallet into an instantiable one by adding the generic type *`I`* on different pallet components.
-We gained an understanding of how instantiable pallets are handled by the substrate runtime and used this understanding to highlight error-prone coupling for instantiable pallets.
+We transformed a regular pallet into an instantiable one by adding the generic
+type *`I`* on different pallet components.
+We gained an understanding of how instantiable pallets are handled by the
+substrate runtime and used this understanding to highlight error-prone coupling
+for instantiable pallets.
 
 We developed an understanding of:
 
@@ -258,3 +298,7 @@ To learn more about instantiable pallets, check out these resources:
 - [Collective Pallet](https://github.com/paritytech/substrate/blob/master/frame/collective/src/lib.rs)
 - [Balances Pallet](https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs)
 - [Multiple Token Implementation](https://github.com/psfblair/polkadot-academy-final-exam/blob/paul-blair-liquid-staking/runtime/src/lib.rs)
+
+>Help us measure our progress and improve Substrate in Bits content by filling
+out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD).
+Thank you!

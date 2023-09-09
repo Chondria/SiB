@@ -3,7 +3,7 @@ tags:
   - substrate
 keywords: [polkadot, substrate, runtime, architecture, implementation]
 description: Breaking down substrate runtime
-updated: 2023-09-06
+updated: 2023-09-08
 author: cenwadike
 duration: 3h
 level: advanced
@@ -120,7 +120,7 @@ down some of the implementation details of a substrate runtime.
 The runtime implemented in `runtime/src/lib.rs` can be roughly divided into the
 following sections:
 
-- (Primitive) type declaration
+- (Primitive) type initialization
 
 - Runtime configuration
 
@@ -141,7 +141,7 @@ This configuration is set at the top of `runtime/src/lib.rs` like so:
 The runtime can also tag processes to be executed in the execution environment
 of the host machine.
 
-### Primitive type declaration
+### Primitive type initialization
 
 Substrate runtime implementation is highly modular and extensively relies on
 multiple crates for `type` definition, `traits`, and other complex data
@@ -450,6 +450,7 @@ To learn more about substrate runtime, check out these resources:
 
 - [Substrate Architecture](https://docs.substrate.io/learn/architecture/)
 - [Substrate Runtime](https://docs.substrate.io/learn/runtime-development/)
+- [Pallets Configuration: An Error-based Approach](./Substrate%20Pallets%20Configuration:%20An%20Error-based%20Approach.md)
 - [impl_runtime_api](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html)
 - [Runtime Execution](https://learnblockchain.cn/docs/substrate/docs/knowledgebase/runtime/execution/)(out-dated code)
 

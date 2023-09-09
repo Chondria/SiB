@@ -12,21 +12,30 @@ level: intermediate
 
 # Deconstructing substrate pallet genesis config
 
-Substrate provides a smooth interface that allows blockchain runtime developers to define the configuration of pallet storage at the genesis block of the runtime or a pallet instantiation.
+Substrate provides a smooth interface that allows blockchain runtime developers
+to define the configuration of pallet storage at the genesis block of the
+runtime or a pallet instantiation.
 
-Substrate uses `genesis_config` and `genesis_build` macros in combination with the `GenesisBuild` trait to abstract complex APIs and processes involved in the initialization of a pallet's storage.
+Substrate uses `genesis_config` and `genesis_build` macros in combination with
+the `GenesisBuild` trait to abstract complex APIs and processes involved in
+the initialization of a pallet's storage.
 
-In this guide, we will dive deep into the internals of substrate pallet storage configuration using a trivial example implemented on a double auction pallet.
+In this guide, we will dive deep into the internals of substrate pallet storage
+configuration using a trivial example implemented on a double auction pallet.
 
->Help us measure our progress and improve Substrate in Bits content by filling out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD). Thank you!
+>Help us measure our progress and improve Substrate in Bits content by filling
+out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD).
+Thank you!
 
 ## Reproducing setup
 
 ### Environment and project setup
 
-To follow along with this tutorial, ensure that you have the Rust toolchain installed.
+To follow along with this tutorial, ensure that you have the Rust toolchain
+installed.
 
-- Visit the [substrate official documentation](https://docs.substrate.io/install/) page for the installation processes.
+- Visit the [substrate official documentation](https://docs.substrate.io/install/)
+page for the installation processes.
 
 - Clone the project [repository](https://github.com/cenwadike/double-auction).
 
@@ -36,32 +45,38 @@ git clone https://github.com/cenwadike/double-auction-pallet
 
 - Navigate into the project’s directory.
 
-```
+```bash
 cd double-auction
 ```
 
 - Run the command below to build the pallet.
 
-```
+```bash
 cargo build --release
 ```
 
 ## Getting some context
 
-The setup above is a substrate pallet that implements [double-auction](https://en.wikipedia.org/wiki/Double_auction) for electrical energy.
+The setup above is a substrate pallet that implements
+[double-auction](https://en.wikipedia.org/wiki/Double_auction) for electrical
+energy.
 
-The seller gets matched (and their electricity is sold to the highest bidder) when the auction period is over.
+The seller gets matched (and their electricity is sold to the highest bidder)
+when the auction period is over.
 
 Auctions to be executed are stored in *`AuctionsExecutionQueue`*.
-When an auction period is over, it is taken from the *`AuctionsExecutionQueue`* and matched to the highest bidder.
+When an auction period is over, it is taken from the
+*`AuctionsExecutionQueue`* and matched to the highest bidder.
 
 Using substrate *genesis_config* we initialize *`AuctionIndex`*.
 
-`AuctionIndex` is an incremental counter that assigns a unique id to an *`Auction`*.
+`AuctionIndex` is an incremental counter that assigns a unique id to an
+*`Auction`*.
 
 ## Adding pallet genesis config
 
-To add the genesis configuration of a pallet storage item, we need to follow five steps:
+To add the genesis configuration of a pallet storage item, we need to follow
+five steps:
 
 - Define the storage items.
 - Add storage item to `GenesisConfig`.
@@ -69,7 +84,8 @@ To add the genesis configuration of a pallet storage item, we need to follow fiv
 - Implement `GenesisBuild` for `GenesisConfig`.
 - Define concrete values for storage items.
 
-*NB: The code used in this guide prioritizes readability over conciseness. Feel free to use more concise code where you see fit.*
+*NB: The code used in this guide prioritizes readability over conciseness.*
+*Feel free to use more concise code where you see fit.*
 
 ### Defining storage item
 
@@ -83,7 +99,9 @@ We used substrate `StorageValue` to define `AuctionIndex` as an item like so:
 
 ### Adding the storage item to `GenesisConfig`
 
-Substrate defines a convention to simplify the definition of a pallet genesis configuration to ease integration with other parts of substrate including substrate runtime and outer node.
+Substrate defines a convention to simplify the definition of a pallet genesis
+configuration to ease integration with other parts of substrate including
+substrate runtime and outer node.
 
 We can define the genesis configuration as a struct like so:
 
@@ -95,11 +113,14 @@ We can define the genesis configuration as a struct like so:
   }
 ```
 
-We could also define genesis config as an `enum`, however for this example, we will stick to using a `struct`.
+We could also define genesis config as an `enum`, however for this example,
+we will stick to using a `struct`.
 
 ### Defining the default value for a storage item
 
-Defining a default value allows us to defer hard-coding initial values on a storage items. The assignment of the initial value is deferred to the runtime that implements our pallet genesis configuration.
+Defining a default value allows us to defer hard-coding initial values on a
+storage items. The assignment of the initial value is deferred to the runtime
+that implements our pallet genesis configuration.
 
 The default value for `AuctionIndex` is defined like so:
 
@@ -117,13 +138,18 @@ The default value for `AuctionIndex` is defined like so:
 
 This uses Rust's in-built default value for `u64`.
 
-We could also define custom default values for complex types including substrate generic types. A link to a substrate doc describing how to use generic types will is added at the end of this guide.
+We could also define custom default values for complex types including
+substrate generic types. A link to a substrate doc describing how to use
+generic types will is added at the end of this guide.
 
 ### Implementing `GenesisBuild` for `GenesisConfig`
 
-We can now implement the `GenesisBuild` trait on our `GenesisConfig` to expose a build function that is leveraged by the runtime to initialize the pallet storage items.
+We can now implement the `GenesisBuild` trait on our `GenesisConfig` to expose
+a build function that is leveraged by the runtime to initialize the pallet
+storage items.
 
-The code below implements `GenesisBuild` for `GenesisConfig` and defines the build function where the initial storage is passed into `AuctionIndex`.
+The code below implements `GenesisBuild` for `GenesisConfig` and defines the
+build function where the initial storage is passed into `AuctionIndex`.
 
 ```rust
   #[pallet::genesis_build]
@@ -137,7 +163,8 @@ The code below implements `GenesisBuild` for `GenesisConfig` and defines the bui
 
 ### Setting initial values for storage items
 
-This step is vital to ensure that the genesis configuration works as expected in the mock runtime and as well as the main runtime.
+This step is vital to ensure that the genesis configuration works as expected
+in the mock runtime and as well as the main runtime.
 
 After coupling your `runtime/lib.rs` like so:
 
@@ -177,19 +204,34 @@ GenesisConfig {
 }
 ```
 
-The runtime uses the data provided in `node/chain_spec.rs` to initialize `AuctionIndex` at the genesis block.
+The runtime uses the data provided in `node/chain_spec.rs` to initialize
+`AuctionIndex` at the genesis block.
 
 ## Going in-depth
 
-At a glance, Substrate storage genesis configuration may appear to be an unnecessary endeavor that could be easily satisfied by declaring the initial storage item directly in the pallet. However, the moment you attempt to do this, you will realize that it is not an easy feat. This becomes especially true when you attempt to initialize a storage item with generic types.
+At a glance, Substrate storage genesis configuration may appear to be an
+unnecessary endeavor that could be easily satisfied by declaring the initial
+storage item directly in the pallet. However, the moment you attempt to do
+this, you will realize that it is not an easy feat. This becomes especially
+true when you attempt to initialize a storage item with generic types.
 
-Substrate provides a developer-friendly interface that enables us to design and implement runtime modules that can be used in different runtimes without the need to rewrite the module's configuration for different runtimes.
+Substrate provides a developer-friendly interface that enables us to design
+and implement runtime modules that can be used in different runtimes without
+the need to rewrite the module's configuration for different runtimes.
 
-This interface is provided mainly by two attribute macros; `genesis_config` and `genesis_build`, and a trait `GenesisBuild` which must be used together to provide a cohesive abstraction for complex storage handling and runtime operations.
+This interface is provided mainly by two attribute macros; `genesis_config` and
+`genesis_build`, and a trait `GenesisBuild` which must be used together to
+provide a cohesive abstraction for complex storage handling and runtime
+operations.
 
-`GenesisConfig` decorated with `genesis_config` allows us to define a data type as a `struct` or `enum` for the configuration of our pallet's genesis state. `genesis_config` also enforces that `GenesisConfig` can only be used from a pallet.
+`GenesisConfig` decorated with `genesis_config` allows us to define a data
+type as a `struct` or `enum` for the configuration of our pallet's genesis
+state. `genesis_config` also enforces that `GenesisConfig` can only be used
+from a pallet.
 
-`GenesisConfig` also implements low-level methods that can be leveraged by the substrate runtime to add values from `GenesisConfig` to storage (even after the genesis block).
+`GenesisConfig` also implements low-level methods that can be leveraged by the
+substrate runtime to add values from `GenesisConfig` to storage (even after the
+genesis block).
 
 `GenesisConfig` is defined like so:
 
@@ -223,9 +265,12 @@ impl GenesisConfig {
 }
 ```
 
-The methods in the `impl` block are no longer the reference standard for implementing genesis configuration using substrate FRAME and as such require the `GenesisBuild` trait.
+The methods in the `impl` block are no longer the reference standard for
+implementing genesis configuration using substrate FRAME and as such require
+the `GenesisBuild` trait.
 
-The `GenesisBuild` trait along with `genesis_build` macro allows us to define exactly how the genesis configuration is built for each storage item provided.
+The `GenesisBuild` trait along with `genesis_build` macro allows us to define
+exactly how the genesis configuration is built for each storage item provided.
 
 `GenesisBuild` is defined like so:
 
@@ -252,15 +297,22 @@ pub trait GenesisBuild<T, I = ()>: Default + MaybeSerializeDeserialize {
 }
 ```
 
-Both `build_storage` and `assimilate_storage` work exactly as in `GenesisConfig` impl.
+Both `build_storage` and `assimilate_storage` work exactly as in
+`GenesisConfig` impl.
 
-`build` is the method of interest. Substrate uses the `build` method to directly expose storage API to a pallet at the genesis block.
+`build` is the method of interest. Substrate uses the `build` method to
+directly expose storage API to a pallet at the genesis block.
 
-In our case, substrate stores the initial storage value of `AuctionIndex` under the key provided by the storage instance. This allows a pallet with multiple instances to also have multiple variants of `AuctionIndex`.
+In our case, substrate stores the initial storage value of `AuctionIndex` under
+the key provided by the storage instance. This allows a pallet with multiple
+instances to also have multiple variants of `AuctionIndex`.
 
 ## Summary
 
-We used the `AuctionIndex` of a double auction pallet to demonstrate how to implement a genesis configuration using Substrate FRAME pallets and APIs. We explored the steps involved in implementing a genesis config, which allows our pallet to be used on any substrate runtime with arbitrary initial value.
+We used the `AuctionIndex` of a double auction pallet to demonstrate how to
+implement a genesis configuration using Substrate FRAME pallets and APIs. We
+explored the steps involved in implementing a genesis config, which allows our
+pallet to be used on any substrate runtime with arbitrary initial value.
 
 We developed an understanding of:
 
@@ -275,3 +327,7 @@ To learn more about substrate genesis config, check out these resources:
 - [Genesis Configuration](https://docs.substrate.io/build/genesis-configuration/)
 - [GenesisConfig doc](https://crates.parity.io/frame_system/pallet/struct.GenesisConfig.html)
 - [GenesisBuild doc](https://crates.parity.io/frame_support/pallet_prelude/trait.GenesisBuild.html)
+
+>Help us measure our progress and improve Substrate in Bits content by filling
+out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD).
+Thank you!
