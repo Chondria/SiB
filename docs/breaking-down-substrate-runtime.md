@@ -14,8 +14,8 @@ level: advanced
 At the heart of every blockchain lies a contained environment called the
 runtime that orchestrates the core functionalities of a blockchain. These
 functionalities enable the blockchain to accurately execute the logic of state
-transition functions including consensus, transaction execution, and on-chain
-state definition and validation.
+transition functions including consensus, transaction validation and execution,
+and on-chain state definition.
 
 Substrate provides a unique approach to runtime design and implementation.
 Substrate unique approach and highly modularized approach to runtime design and
@@ -32,49 +32,6 @@ runtime.
 > Help us measure our progress and improve Substrate in Bits content by
 filling out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD).
 Thank you!
-
-## Reproducing setup
-
-### Project setup
-
-To follow along, ensure you have the Rust toolchain installed.
-
-- Visit the
-[substrate official documentation](https://docs.substrate.io/install/)
-for the installation processes.
-
-- Clone the project
-[repository](https://github.com/cenwadike/double-auction-node).
-
-```rust
-git clone https://github.com/cenwadike/double-auction-node
-```
-
-- Navigate into the project’s directory.
-
-```bash
-cd double-auction-node
-```
-
-- Run the command below to build the pallet.
-
-```bash
-cargo build --release
-```
-
-## Getting some context
-
-The setup above is a substrate node that implements
-[double-auction](https://en.wikipedia.org/wiki/Double_auction) for electrical
-energy.
-
-When the auction period ends, the seller gets matched
-(and their electricity is sold to the highest bidder).
-
-When an auction ends, it is taken from the _`AuctionsExecutionQueue`_ and
-matched to the highest bidder.
-
-Use the setup above as a reference to follow along if you get stuck.
 
 ## Understanding substrate runtime architecture
 

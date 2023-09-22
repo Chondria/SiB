@@ -48,13 +48,13 @@ git clone https://github.com/cenwadike/double-auction-node
 
 - Navigate into the project’s directory.
 
-```
+```bash
 cd double-auction-node
 ```
 
 - Run the command below to build the pallet.
 
-```
+```bash
 cargo build --release
 ```
 
