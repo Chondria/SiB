@@ -1,1 +1,1 @@
-# Understanding Substrate Account Data Structures
+# Implementing custom traits for your custom types
