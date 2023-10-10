@@ -14,22 +14,21 @@ level: advanced
 Transaction connotes different meanings under different settings, even in
 software development. The concept of transactions in a traditional database
 represents multiple and usually complex actions that potentially manipulate
-data in different forms of data storage eg. a Table in a relational database.
-Transactions in blockchain have a similar connotation. Blockchain transaction
-describes a specific action and how it should be executed in a blockchain
-runtime.
+data spanning different tables in a database. Transactions in blockchain 
+have a similar connotation. Blockchain transaction describes a specific 
+action and how a blockchain runtime should execute it.
 
 Substrate and its ecosystem provide ergonomic tools and a modular approach that
 can be used to construct transactions and implement all processes relevant to
-transaction validation, metering, gossiping, and execution. Substrate also
-allows you as a developer to integrate your custom processes for handling
-transactions.
+transaction validation, transaction metering, transaction execution, and block 
+propagation. Substrate also allows you as a developer to customize every step 
+related to transaction execution and block production.
 
-This guide is part 1 of a two-part series on how transactions and blocks are
+This guide is part 1 of a two-part series that provides a detailed description 
+along with reference code implementation on how transactions and blocks are
 handled in Substrate. In this guide, we break down the essential process
-involving transactions within the context of Substrate. We will look at code
-implementation of some of these steps, and develop an understanding of how we
-can customize each step.
+involving transactions within the context of Substrate and highlighting how each 
+step can be customized.
 
 >Help us measure our progress and improve Substrate in Bits content by filling
 out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD).
@@ -37,12 +36,12 @@ It will only take 2 minutes of your time. Thank you!
 
 ## Extrinsic vs Transaction
 
-Transactions in substrate are referred to as *Extrinsics*. This is because they
+Transactions in Substrate are referred to as *Extrinsics*. This is because they
 originate out of the runtime and are distinct from system calls originating
-from the runtime and the core client. Extrinsics describes runtime call and
-usually contains the function signature, a signature from the caller's private
-key, and some data to describe if the extrinsic has passed some validity checks.
-An extrinsic can be *conceptually* viewed like so:
+from the runtime and the core client. Extrinsics describes runtime calls and
+usually contains a function signature, a signature created from the caller's 
+private key, and some data to describe if the extrinsic has passed some validity 
+checks. An extrinsic can be *conceptually* viewed like so:
 
 ```rust
 type Extrinsic {
@@ -55,14 +54,14 @@ type Extrinsic {
 ```
 
 In Substrate, the implementation of an extrinsic has two definitions, which are:
-
-- The `trait` **Extrinsic**. This definition implements the "actions" an
-extrinsic should be able to do. These actions could be checking if a
-transaction is signed or any other step that does not change the blockchain
-state and other runtime processes.
+- **Extrinsic** `trait` vs **Extrinsic** `type alias`
+  
+- **Extrinsic** `trait` implements the "actions" an extrinsic should be able to
+perform. These actions could be checking if a transaction is signed or any other
+process that does not change the blockchain state and other runtime processes.
 
 This also allows you as a runtime developer to customize what constitutes an
-extrisic for your Blockchain.
+extrinsic for your Blockchain.
 
 The Extrinsic trait is defined like so:
 
@@ -80,8 +79,8 @@ pub trait Extrinsic: Sized {
 }
 ```
 
-- Substrate also has an **Extrinsic** `type alias` that is used to define an
-extrinsic within the *conceptual* context of a Block.
+- **Extrinsic** `type alias` is used to define an extrinsic within the *conceptual*
+context of a Block.
 
 The Extrinsic type alias is defined like so:
 
@@ -89,12 +88,12 @@ The Extrinsic type alias is defined like so:
 type Extrinsic: Member + Codec + Extrinsic + MaybeSerialize;
 ```
 
-It is used to represent an extrinsic that constitutes a block.
+It is used to represent an extrinsics that constitutes a block.
 
-> Note: More on Blocks in the sections
+> Note: More on Blocks in the section [here](##Executing-Extrinsics).
 
-Substrate provides 3 distinct formats of extrinsics based on the origin of the
-extrinsic and includes the following:
+Substrate provides three (3) distinct formats of extrinsics based on the origin of 
+the extrinsic. They include the following:
 
 1. `Signed extrinsics`
 2. `Unsigned extrinsics`
@@ -102,11 +101,11 @@ extrinsic and includes the following:
 
 ### Signed extrinsics
 
-Also called *Signed transactions* are the commonest
-form of a substrate extrinsic. hey are generally used to make RPC requests to a
-chain and must contain the following:
+Also called *Signed transactions* are the commonest form of a substrate extrinsic. 
+They are generally used to make RPC requests to a chain and must contain the 
+following:
 
-- he signature of the account sending the inbound request to the runtime using
+- A signature from the account sending the inbound request to the runtime using
 the sender's private key.
 - sufficient *balance* in the sender's account to pay for the transaction fee.
 
@@ -124,9 +123,9 @@ type Extrinsic {
 
 ### Unsigned extrinsics
 
-Unsigned extrinsics do not include carry any information about who submitted
-the transaction. This form of extrinsic does not contain a field for signature
-and rather must meet conditions defined by the runtime to be valid.
+Unsigned extrinsics do not include any information about who submitted the 
+transaction. This form of extrinsic does not contain a field for signature and 
+rather must meet conditions defined by the runtime to be valid.
 
 Unsigned extrinsics are commonly used by off-chain workers to feed data to the
 runtime and trigger function calls when certain conditions are met.
@@ -147,8 +146,9 @@ type Extrinsic {
 
 Substrate provides a special type of unsigned transaction that can be
 constructed by block authors. They may contain the information required to
-build a block such as timestamps, storage proofs, and uncle blocks, and can
-also include any other data the block author wishes to include.
+build a block such as timestamps, storage proofs, and information about 
+preceding blocks, and can also include any other data the block author wishes 
+to include.
 
 Inherents are handled and represented differently within Substrate. And has a
 different type from an **Extrinsic**.
@@ -157,7 +157,7 @@ Because Inherents have an endogenous origin and are only called just before a
 block is created and proposed to other nodes in the network, it is defined
 differently in Substrate.
 
-Substrate inherent has a complex implementation, and represents **InherentType**
+Substrate inherent has a complex implementation and represents **InherentType**
 like so:
 
 ```rust
@@ -169,7 +169,7 @@ struct Slot(T);
 This enables adaptable implementation for different block production mechanisms
 like [BABE](https://www.polkadot.network/blog/polkadot-consensus-part-3-babe/).
 
-Data created from an intrinsic is included in a Block and the block's proposal.
+Data created from an inherent is included first in a Block and the block's proposal.
 
 You can learn more about Inherents [here](https://paritytech.github.io/polkadot-sdk/master/sp_consensus_babe/inherents/type.InherentType.html)
 
@@ -181,16 +181,16 @@ You can learn more about Inherents [here](https://paritytech.github.io/polkadot-
 
 ![Extrinsic lifecycle](../Images/extrinsic_lifecycle.png)
 
-Moving along with the previous section, we may have a clue that extrinsics
+Moving along from the previous section, we may have a clue that extrinsics
 contain information that the runtime could use to effect some changes to the
 storage of the chain.
 
 The changes are executed by the node that received the request, which is
-usually a non-validating full node. The data changes are recorded and used
+usually a validating full node. The data changes are recorded and used
 to construct a block proposal.
 
-This section provides a high-level overview of how extrinsics get processed by
-a node and lays more groundwork for subsequent sections
+This section provides an overview of how extrinsics get processed by
+a node and lays more groundwork for subsequent sections.
 
 The process involved in an extrinsic life cycle is described
 extensively in substrate [doc](https://docs.substrate.io/learn/transaction-lifecycle/#validating-and-queuing-transactions)
@@ -210,7 +210,7 @@ This process usually occurs outside the entire chain’s client software and is
 facilitated by external libraries. These external libraries are complex
 packages however their core features include:
 
-- generating signature from a private
+- generating signature from a private key
 - creating a connection to a node
 - constructing a valid extrinsic
 - making a request containing the extrinsic
@@ -225,7 +225,7 @@ Prominent Rust crates that enable developers to submit Extrinsic include:
 
 A very popular alternative for Javascript developers is the PolkadotJs
 [package](https://polkadot.js.org/docs/). [Substrate-api-sidecar](https://github.com/paritytech/substrate-api-sidecar)
-is a Typscript-based package that interacts with Substrate nodes using RESTful
+is a Typescript-based package that interacts with Substrate nodes using RESTful
 APIs.
 
 Other options are available in other languages including Python, Kotlin, and
@@ -250,20 +250,20 @@ These criteria ensure the following:
 - The extrinsic nonce is valid.
 - The extrinsic has not expired.
 - The extrinsic has not been included in a previous block.
-- The extrinsic data is not too large to be added to a block.
+- The extrinsic data is not too large to be added to the current block.
 
 > If data from an extrinsic is too large to be added, it is tagged as invalid
-and moved to the next validation for a future block where it may be added
-before other extrinsic of similar or lower priority.
+and moved to the next validation round for a future block where it may be added
+before other extrinsic of similar priority or lower priority.
 
-> The transaction nonce is usually derived from the account of the caller and
+> The transaction nonce is mainly derived from the account of the caller and
 denotes the index of the transactions originating from an account.
 
 Transactions that do not meet all criteria defined in the runtime are dropped
 from the transaction pool and do not get added to a Block proposal. These
 invalid transactions do not get executed.
 
-Substrate provides an interface that enables the external client to construct
+Substrate provides an interface that enables the core client to construct
 extrinsic valid from the transaction pool.
 
 The interface is defined like so:
@@ -282,7 +282,7 @@ pub trait TaggedTransactionQueue<Block: BlockT>: Core<Block> {
 }
 ```
 
-Substrate runtime also provides an interface that enables external client and
+Substrate runtime also provides an interface that enables core client and
 FRAME executive pallet to validate an extrinsic within a given block [here](https://paritytech.github.io/polkadot-sdk/master/src/sc_transaction_pool/graph/pool.rs.html#72-77) and [here](https://paritytech.github.io/polkadot-sdk/master/src/frame_executive/lib.rs.html#636-672)
 
 A valid transaction is defined in Substrate like so:
@@ -298,10 +298,9 @@ pub struct ValidTransaction {
 ```
 
 Each field can be customized to meet the needs of your chain. For example, the
-default **TransactionValidity** is after u64::MAX blocks. This means an
-otherwise valid transaction, becomes invalid if it is not executed after
-*18446744073709551615* blocks from the block height at which it was added to
-the transaction pool.
+default **TransactionLongevity** is u64::MAX blocks. This means an otherwise 
+valid transaction becomes invalid if it is not executed after 
+*18446744073709551615* blocks from the block height at which it was submitted.
 
 You can learn more about transaction validation [here](https://paritytech.github.io/polkadot-sdk/master/sp_runtime/transaction_validity/struct.ValidTransaction.html)
 
@@ -316,31 +315,33 @@ are valid at any point in time.
 Transactions are ordered from the highest priority to the lowest priority until
 the block reaches a maximum length or weight.
 
+> Learn about weight in Substrate from our previous guide on benchmarking 
+[here](./benchmarking-substrate-pallet).
+
 It is important to note that this maximum length does not include `Inherents`.
 Inherents have the highest priority in Substrate and can be included in a block
-even after the maximum length is reached.
-As always you can override this behaviour by customizing the
-`EnsureInherentsAreFirst` [trait](https://paritytech.github.io/polkadot-sdk/master/frame_support/traits/trait.EnsureInherentsAreFirst.html)
+even after the maximum length is reached. And as always, you can override this 
+behavior by customizing the `EnsureInherentsAreFirst` [trait](https://paritytech.github.io/polkadot-sdk/master/frame_support/traits/trait.EnsureInherentsAreFirst.html)
 
 Substrate priority system ensures that transactions from an account are added
-in ascending order of the transaction `nonce`. Transactions are in which
-dependencies of other transactions are added first before the dependent
-transaction.
+in ascending order of the transaction `nonce`. This ensures that transactions 
+required by other transactions are added first, allowing a deterministic 
+sequential execution of chained transactions.
 
-Substrate uses "tags" to include dependencies into a `ValidTransaction` as
-shown in the previous [section](#validating-an-extinsic)
+Substrate uses "tags" to include higher-order transactions in a 
+`ValidTransaction` as defined [here](#validating-an-extinsic)
 
 ## Executing Extrinsics
 
 After valid transactions have been added to the transaction queue, the FRAME
 executive [pallet](https://paritytech.github.io/polkadot-sdk/master/frame_executive/struct.Executive.html)
-orchestrates the execution of all transactions. The
-"execution" of extrinsics is basically sequential calls to Substrate runtime
-that cause a change in some state value and generation of a "proof". (More about
-this proof later).
+orchestrates the execution of all transactions. The "execution" of extrinsics 
+is basically sequential calls to Substrate runtime that cause a change in some 
+state value and generate a "proof". (More about this proof later).
 
-The executive pallet is intrinsically connected to the rest of the Substrate
-runtime. The executive's actions can be understood along the following phases:
+The executive pallet instruments the execution of Extrinsics and is intricately
+connected to the rest of the Substrate runtime. The executive's actions can be 
+understood along the following phases:
 
 - Initializing a block
 - Executing transactions
@@ -409,8 +410,8 @@ fn initialize_block_impl(
 
 ---
 
-After the block has been initialized, each transaction in  the transaction is
-executed in the order priority discussed in the preceding [section](#ordering-extrinsics).
+After the block has been initialized, each transaction is executed in the 
+order priority discussed in the preceding [section](#ordering-extrinsics).
 
 It is important to know that state changes are written directly to storage
 during execution. If a transaction were to fail mid-execution, any state
@@ -492,9 +493,9 @@ interesting business logic on a runtime.
 
 ## Summary
 
-This brings us to the end of this guide. In this guide, we develop  a
-fundamental understanding of what transactions are and how they are constructed
-within the context of Substrate.
+This brings us to the end of part 1 of **from transaction to block**. In this
+guide, we develop a fundamental understanding of what transactions are and 
+how they are constructed within the context of Substrate.
 
 We developed an understanding of the following:
 
@@ -507,7 +508,7 @@ We developed an understanding of the following:
 We also got exposed to software libraries and implementation facilitating these
 processes.
 
-To learn more about how transactions and blocks are handled in substrate,
+To learn more about how transactions and blocks are handled in Substrate,
 check out these resources:
 
 - [Extrinsic Wiki](https://url)
