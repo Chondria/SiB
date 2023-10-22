@@ -201,8 +201,8 @@ The process that will be discussed in this article includes the following:
 - Extrinsic Submission
 - Extrinsic Validation and Queuing
 - Extrinsic Ordering
-- Block Execution
-- Block Initialization
+- Extrinsic Execution
+- Block Authoring
 - Block Propagation
 
 ## Submitting an extrinsic
@@ -512,7 +512,7 @@ processes.
 To learn more about how transactions and blocks are handled in Substrate,
 check out these resources:
 
-- [Extrinsic Wiki](https://url)
+- [Extrinsic Wiki](https://wiki.polkadot.network/docs/learn-extrinsics)
 - [Key and Network Operation](https://docs.substrate.io/deploy/keys-and-network-operations/#:~:text=The%20Sr25519%20signature%20scheme%20is,signatures%20with%20Ristretto%20point%20compression.)
 - [Extrinsic Tagging](https://paritytech.github.io/polkadot-sdk/master/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html#method.validate_transaction)
 - [Extrinsic Validation](https://paritytech.github.io/polkadot-sdk/master/src/frame_executive/lib.rs.html#636-672)

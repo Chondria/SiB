@@ -53,7 +53,8 @@ By following these steps, you can test out the code samples for each Substrate i
 | 15 | Dealing with runtime constants | Runtime Constants | [Visit](./docs/Dealing%20with%20runtime%20constants.md) |
 | 16 | Writing efficient storage items | Storage Items | [Visit](#table-of-technical-content) |
 | 17 | Breaking down substrate runtime  | Runtime Architecture | [Visit](./docs/breaking-down-substrate-runtime.md) |
-| 17 | From transaction to block - part 1  | Transaction execution | [Visit](./docs/from-transaction-to-block-part-1.md) |
+| 18 | From transaction to block - part 1  | Transaction Execution | [Visit](./docs/from-transaction-to-block-part-1.md) |
+| 19 | From transaction to block - part 2  | Block Execution | [Visit](./docs/from-transaction-to-block-part-2.md) |
 
 ## Contributing
 
