@@ -55,7 +55,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | 17 | Breaking down substrate runtime  | Runtime Architecture | [Visit](./docs/breaking-down-substrate-runtime.md) |
 | 18 | From transaction to block - part 1  | Transaction Execution | [Visit](./docs/from-transaction-to-block-part-1.md) |
 | 19 | From transaction to block - part 2  | Block Propagation | [Visit](./docs/from-transaction-to-block-part-2.md) |
-| 20 | Deep dive into Substrate consensus  | Consensus | [Visit](./docs/deep-dive-into-substrate-consensus.md) |
+| 20 | Deep dive into Substrate consensus - part 1  | Consensus (Block Authoring) | [Visit](./docs/deep-dive-into-substrate-consensus.md) |
 
 ## Contributing
 
