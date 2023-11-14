@@ -1,4 +1,4 @@
-# Implementing custom traits for your custom types
+# Common Iterator Adapters and Consumers used in Substrate
 Creating custom data types in substrate requires the implementation of multiple traits, in order to ensure compatibility with the various functionalities. Some of these traits include `Clone`, `Encode`, `Decode`, `PartialEq` etc. In this Substrate-In-Bits content, we take an error-based approach to understanding why these implementations are needed and how to implement the necessary traits for your custome data types.
 
 ## Reproducing errors
