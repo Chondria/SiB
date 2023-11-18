@@ -56,7 +56,11 @@ By following these steps, you can test out the code samples for each Substrate i
 | 18 | From transaction to block - part 1  | Transaction Execution | [Visit](./docs/from-transaction-to-block-part-1.md) |
 | 19 | From transaction to block - part 2  | Block Propagation | [Visit](./docs/from-transaction-to-block-part-2.md) |
 | 20 | Deep dive into Substrate consensus - part 1  | Consensus (Block Authoring) | [Visit](./docs/deep-dive-into-substrate-consensus-part-1.md) |
+<<<<<<< HEAD
 | 21 | Common Iterator Consumers and Adapters used in Substrate  | Idioms | [Visit]([./docs/deep-dive-into-substrate-consensus-part-1.md](https://github.com/Chondria/SiB/blob/main/docs/Common%20Iterator%20Adapters%20and%20Consumers%20used%20in%20Substrate.md)) |
+=======
+| 21 | Deep dive into Substrate consensus - part 2  | Consensus (Block Finality) | [Visit](./docs/deep-dive-into-substrate-consensus-part-2.md) |
+>>>>>>> f7a347c (content: add deep-dive-into-substrate-consensus-part-2.md)
 
 ## Contributing
 

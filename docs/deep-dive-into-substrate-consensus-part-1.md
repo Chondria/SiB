@@ -352,9 +352,6 @@ To learn more about substrate consensus, check out these resources:
 - [Authority](https://docs.substrate.io/reference/glossary/#authority)
 - [Aura](https://docs.rs/sc-consensus-aura/latest/sc_consensus_aura/)
 - [BABE](https://docs.rs/sc-consensus-babe/latest/sc_consensus_babe/)
-- [GRANDPA]()
-- [BABE research]()
-- [GRANDPA research]()
 
 >Help us measure our progress and improve Substrate in Bits content by filling
 out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD).
