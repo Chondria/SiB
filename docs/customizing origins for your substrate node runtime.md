@@ -1,1 +1,1 @@
-# Customizing origins for your substrate runtime
+# Customizing origins for your substrate runtime.
