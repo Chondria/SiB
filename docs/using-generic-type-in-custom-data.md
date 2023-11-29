@@ -156,7 +156,7 @@ our custom pallet.
 
 The FRAME system `Config` is a system configuration trait that can be
 implemented for any pallet by a runtime. This means that a pallet can define a
-specific configuration that summarises all relevant substrate primitive data
+specific configuration that summaries all relevant substrate primitive data
 types required to fully construct the pallet and interact with its state and
 functions.
 
