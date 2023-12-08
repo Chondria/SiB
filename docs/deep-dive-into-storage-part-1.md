@@ -3,7 +3,7 @@ tags:
   - substrate
 keywords: [polkadot, substrate, storage, storage items, tries]
 description: Deep Dive into Substrate Storage - Part 1
-updated: 2023-09-22
+updated: 2023-12-08
 author: cenwadike
 duration: 3h
 level: intermediate
@@ -21,9 +21,9 @@ database.
 
 This is the first part of the series on Substrate storage. We will build a
 comprehensive knowledge of how data is handled and stored within the context
-of Substrate. This series will cover abstractions and primitive data structures
-supported by Substrate and will mention notable caveats and relevant code
-implementations.
+of Substrate. This part of the series will cover abstractions and primitive
+data structures supported by Substrate and will mention notable caveats and
+relevant code implementations.
 
 >Help us measure our progress and improve Substrate in Bits content by filling
 out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD).
@@ -230,7 +230,41 @@ data retrieval. an associated key itself may point to a key in the
 key-value database further points to value which is a key to several other
 values that hold the actual data.
 
-## Deep dive into tries - security considerations and use in bridging
+>More on path optimization in the next part of this series.
+
+### Balanced Trie and Child Trie
+
+## Deep dive into tries - State Proofs and Transaction Data
+
+We can consider *state proof* to be a summary that sufficiently describes a
+chuck of data on the blockchain. In reality state proofs are cryptographic has
+of transactions which have been vetted on by a blockchain consensus.
+
+It can be simply visualized as the root hash derived from a trie of transactions.
+The hashes of transactions as stated earlier are efficiently recorded as blocks.
+As such a state can be defined like so:
+
+```rust
+StateProof = Hash(Block<Transaction>);
+```
+
+State proof are vital for bridge implementation, to verify a transaction and
+carry out relevant actions on a remote chain. A remote chain can *prove* that a
+transaction is part of a proof submitted like so:
+
+```rust
+fn get_transaction_from_transaction_id(encoded_proof: Proof, tx_hash: Hash) -> Transaction {
+  // uses external in snow bridge to decode proof
+  let decoded_proof = ext::decode_proof(encoded_proof);
+
+  let transaction = decoded_proof
+    .transactions
+    .iter()
+    .get(tx_hash);
+
+  return transaction;
+}
+```
 
 ## Summary
 

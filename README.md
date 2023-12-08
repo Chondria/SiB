@@ -60,6 +60,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | 22 | Deep dive into Substrate consensus - part 2  | Consensus (Block Finality) | [Visit](./docs/deep-dive-into-substrate-consensus-part-2.md) |
 | 23 | Associated types vs Generic type parameters in Rust and Substrate  | Idioms | [Visit](./docs/Associated%20types%20vs%20Generic%20type%20parameters%20in%20Rust%20and%20Substrate.md) |
 | 24 | Deep dive into Substrate storage - part 1  | Tries | [Visit](./docs/deep-dive-into-substrate-storage-part-1.md) |
+| 24 | Deep dive into Substrate storage - part 2  | Database | [Visit](./docs/deep-dive-into-substrate-storage-part-2.md) |
 
 ## Contributing
 
