@@ -9,7 +9,7 @@ duration: 3h
 level: intermediate
 ---
 
-# Let’s distill the #[pallet::storage] macro
+# Let’s distill the pallet storage macro
 
 The **`#[pallet::storage]`** macro is required for defining the state of a
 Substrate runtime module. It is utilized in the creation of pallet storage
