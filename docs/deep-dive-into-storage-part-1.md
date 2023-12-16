@@ -44,7 +44,7 @@ data structures include the following:
 These data structures enable developers to build runtime logic around custom
 data types. They ease working with runtime APIs and other Substrate FRAME
 modules.
->To learn how you could build runtime logic around custom data types check out
+>To learn how to build runtime logic around custom data types check out
 >this [guide](./using-generic-type-in-custom-data.md).
 
 Using **`StorageValue`** as the prototypical storage item, we will look at the
@@ -220,35 +220,35 @@ In the simplest description, a trie path is a path taken to reach a leaf in a
 **Merkle Trie**. This path is taken to write data and read data for the first
 time (the path is cached after the first read).
 
-The trie path leads to the associated key (ie. node's hash) to a data. The
-associated data further points to a key in the key-value database, which points
-to the actual data in storage.
+The trie path points to the associated key of the data in the trie. This key
+usually points directly point to the actual data in the key-value database.
+Sometimes, the key may further point to other keys in the key-value database,
+which subsequently points to the actual data in storage.
 
 It is important to note that a trie path may span many levels of a tree and the
 data retrieved may be stored across several associated keys for a comprehensive
 data retrieval. an associated key itself may point to a key in the
-key-value database further points to value which is a key to several other
+key-value database, which further points to value which is a key to several other
 values that hold the actual data.
 
 >More on path optimization in the next part of this series.
 
-### Balanced Trie and Child Trie
-
 ## Deep dive into tries - State Proofs and Transaction Data
 
-We can consider *state proof* to be a summary that sufficiently describes a
-chuck of data on the blockchain. In reality state proofs are cryptographic has
-of transactions which have been vetted on by a blockchain consensus.
+We can consider state proof to be a summary that sufficiently describes a chunk
+of data on the blockchain. In reality state proofs are cryptographic has of 
+transactions that have been vetted on by a blockchain consensus.
 
 It can be simply visualized as the root hash derived from a trie of transactions.
 The hashes of transactions as stated earlier are efficiently recorded as blocks.
 As such a state can be defined like so:
 
+
 ```rust
 StateProof = Hash(Block<Transaction>);
 ```
 
-State proof are vital for bridge implementation, to verify a transaction and
+State proofs are vital for bridge implementation, to verify a transaction and
 carry out relevant actions on a remote chain. A remote chain can *prove* that a
 transaction is part of a proof submitted like so:
 
