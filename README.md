@@ -38,7 +38,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | --- | --- | --- | --- |
 | 1 | Accessing storage and functions across pallets | Pallet integration | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/accessing-storage-and-functions-across-pallets) |
 | 2 | Using generic types in custom data | Custom data | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/using-generic-type-in-custom-data) |
-| 3 | DispatchResult vs DispathResultWithPostInfo | Dispatchables | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/DispatchResult%20vs%20DispathResultWithPostInfo) |
+| 3 | DispatchResult vs DispatchResultWithPostInfo | Dispatchables | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/DispatchResult%20vs%20DispathResultWithPostInfo) |
 | 4 | Blake2 vs TwoX | Hashing | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/Blake2_128Concat%20vs%20Twox64Concat) |
 | 5 | Let’s distill the construct_runtime macro | Macros | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/Let%E2%80%99s%20distill%20the%20construct_runtime%20macro) |
 | 6 | Running unit tests on substrate pallet | Unit test | [Visit](https://polkadot.study/tutorials/substrate-in-bits/docs/Running-unit-test-on-substrate-pallet) |
@@ -60,7 +60,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | 22 | Deep dive into Substrate consensus - part 2  | Consensus (Block Finality) | [Visit](./docs/deep-dive-into-substrate-consensus-part-2.md) |
 | 23 | Associated types vs Generic type parameters in Rust and Substrate  | Idioms | [Visit](./docs/Associated%20types%20vs%20Generic%20type%20parameters%20in%20Rust%20and%20Substrate.md) |
 | 24 | Deep dive into Substrate storage - part 1  | Tries | [Visit](./docs/deep-dive-into-substrate-storage-part-1.md) |
-| 24 | Deep dive into Substrate storage - part 2  | Database | [Visit](./docs/deep-dive-into-substrate-storage-part-2.md) |
+| 24 | Deep dive into Substrate storage - part 2  | KVDB | [Visit](./docs/deep-dive-into-substrate-storage-part-2.md) |
 
 ## Contributing
 

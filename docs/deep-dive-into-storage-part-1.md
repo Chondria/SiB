@@ -39,7 +39,7 @@ data structures include the following:
 - **`StorageValue`**: to store any single value, such as a u8.
 - **`StorageMap`**: to store a single key to value mapping.
 - **`StorageDoubleMap`**: to store values in a storage map with two keys.
-- **`StorageNMao`**: to store values in a map with any arbitrary number of keys.
+- **`StorageNMap`**: to store values in a map with any arbitrary number of keys.
 
 These data structures enable developers to build runtime logic around custom
 data types. They ease working with runtime APIs and other Substrate FRAME
@@ -282,9 +282,8 @@ resources:
 - [Storage Items](https://docs.substrate.io/build/runtime-storage/#transactional-storage)
 - [Shawn T's Storage Deep Dive](https://www.shawntabrizi.com/assets/presentations/substrate-storage-deep-dive.pdf)
 
-Keep an eye out for the second part of the series where we cover how data read
-and write is optimized by Substrate, and how the external client manages the
-key-value database.
+Check out the second part of the series [here](./deep-dive-into-storage-part-2.md)
+where we covered how the external client manages the key-value database.
 
 >Help us measure our progress and improve Substrate in Bits content by filling
 out our living [feedback form](https://airtable.com/shr7CrrZ5zqlhWEUD).

@@ -89,7 +89,7 @@ within the network.
 Each node has an RPC endpoint dedicated to block import. This RPC endpoint is
 linked to a block import queue which listens for incoming blocks and adds these
 incoming blocks to the block pool. In the pool, each block header is verified
-against the extrinsics in the block, and invalid blocks are discarded. Verified
+against the extrinsic in the block, and invalid blocks are discarded. Verified
 blocks are subsequently added to the node's database of blocks.
 
 Block propagation has complex implementation involving specific network modules

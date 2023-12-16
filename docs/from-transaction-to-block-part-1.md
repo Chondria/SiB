@@ -194,7 +194,7 @@ This section provides an overview of how extrinsics get processed by
 a node and lays more groundwork for subsequent sections.
 
 The process involved in an extrinsic life cycle is described
-extensively in substrate [doc](https://docs.substrate.io/learn/transaction-lifecycle/#validating-and-queuing-transactions)
+extensively in substrate [doc](https://docs.substrate.io/learn/transaction-lifecycle/#verifying-and-queuing-transactions)
 
 The process that will be discussed in this article includes the following:
 
@@ -235,9 +235,9 @@ Java which can be found [here](https://github.com/substrate-developer-hub/awesom
 The Substrate transaction module is defined [here](https://paritytech.github.io/polkadot-sdk/master/sc_rpc_spec_v2/transaction/index.html).
 It provides the Transaction [API](https://paritytech.github.io/polkadot-sdk/master/sc_rpc_spec_v2/transaction/transaction/struct.Transaction.html) which is leveraged by the packages mentioned above.
 
-## Validating an Extrinsic
+## Verifying an Extrinsic
 
-After a node receives an extrinsic, the node validates the extrinsic and adds
+After a node receives an extrinsic, the node verifies the extrinsic and adds
 the extrinsic to its transaction pool.
 
 An extrinsic is valid if it meets the criteria defined by the runtime. The
@@ -284,7 +284,7 @@ pub trait TaggedTransactionQueue<Block: BlockT>: Core<Block> {
 ```
 
 Substrate runtime also provides an interface that enables core client and
-FRAME executive pallet to validate an extrinsic within a given block [here](https://paritytech.github.io/polkadot-sdk/master/src/sc_transaction_pool/graph/pool.rs.html#72-77) and [here](https://paritytech.github.io/polkadot-sdk/master/src/frame_executive/lib.rs.html#636-672)
+FRAME executive pallet to verify an extrinsic within a given block [here](https://paritytech.github.io/polkadot-sdk/master/src/sc_transaction_pool/graph/pool.rs.html#72-77) and [here](https://paritytech.github.io/polkadot-sdk/master/src/frame_executive/lib.rs.html#636-672)
 
 A valid transaction is defined in Substrate like so:
 
@@ -330,7 +330,7 @@ required by other transactions are added first, allowing a deterministic
 sequential execution of chained transactions.
 
 Substrate uses "tags" to include higher-order transactions in a
-`ValidTransaction` as defined [here](#validating-an-extinsic)
+`ValidTransaction` as defined [here](#verifying-an-extrinsic)
 
 ## Executing Extrinsics
 
@@ -468,7 +468,7 @@ function in the system pallet is executed last.
 checks that the digest and storage root in the block header match what was
 calculated when the block was initialized.
 
->The on_idle function also passes through the remaining weight of the block to allow for execution based on the usage of the blockchain.
+>The `on_idle` function also passes through the remaining weight of the block to allow for execution based on the usage of the blockchain.
 
 The FRAME executive `finalize_block` function is implemented like so:
 
@@ -501,7 +501,7 @@ how they are constructed within the context of Substrate.
 We developed an understanding of the following:
 
 - What an extrinsic is and its various forms
-- How transactions are validated
+- How transactions are verified
 - Substrate transaction priority system
 - How transactions are queued
 - How extrinsic get executed within the context of a block
