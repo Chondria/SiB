@@ -50,9 +50,9 @@ By following these steps, you can test out the code samples for each Substrate i
 | 12 | Working with substrate pallet hooks | Hooks | [Visit](./docs/working-with-hooks.md) |
 | 13 | Deconstructing pallet genesis config | Configuration | [Visit](./docs/deconstructing-pallet-genesis-config.md) |
 | 14 | Understanding substrate pallet instance | Pallet Instance | [Visit](./docs/understanding-substrate-pallet-instance.md) |
-| 15 | Dealing with runtime constants | Runtime Constants | [Visit](./docs/Dealing%20with%20runtime%20constants.md) |
+| 15 | Dealing with runtime constants | Runtime | [Visit](./docs/Dealing%20with%20runtime%20constants.md) |
 | 16 | Writing efficient storage items | Storage Items | [Visit](#table-of-technical-content) |
-| 17 | Breaking down substrate runtime  | Runtime Architecture | [Visit](./docs/breaking-down-substrate-runtime.md) |
+| 17 | Breaking down substrate runtime  | Runtime | [Visit](./docs/breaking-down-substrate-runtime.md) |
 | 18 | From transaction to block - part 1  | Transaction Execution | [Visit](./docs/from-transaction-to-block-part-1.md) |
 | 19 | From transaction to block - part 2  | Block Propagation | [Visit](./docs/from-transaction-to-block-part-2.md) |
 | 20 | Deep dive into Substrate consensus - part 1  | Consensus (Block Authoring) | [Visit](./docs/deep-dive-into-substrate-consensus-part-1.md) |
@@ -60,7 +60,8 @@ By following these steps, you can test out the code samples for each Substrate i
 | 22 | Deep dive into Substrate consensus - part 2  | Consensus (Block Finality) | [Visit](./docs/deep-dive-into-substrate-consensus-part-2.md) |
 | 23 | Associated types vs Generic type parameters in Rust and Substrate  | Idioms | [Visit](./docs/Associated%20types%20vs%20Generic%20type%20parameters%20in%20Rust%20and%20Substrate.md) |
 | 24 | Deep dive into Substrate storage - part 1  | Tries | [Visit](./docs/deep-dive-into-substrate-storage-part-1.md) |
-| 24 | Deep dive into Substrate storage - part 2  | KVDB | [Visit](./docs/deep-dive-into-substrate-storage-part-2.md) |
+| 25 | Deep dive into Substrate storage - part 2  | KVDB | [Visit](./docs/deep-dive-into-substrate-storage-part-2.md) |
+| 26 | Understanding runtime aggregation in substrate  | Runtime | [Visit](https://github.com/Chondria/SiB/blob/main/docs/Understanding%20runtime%20aggregation%20in%20substrate.md) |
 
 ## Contributing
 
