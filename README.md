@@ -62,6 +62,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | 24 | Deep dive into Substrate storage - part 1  | Tries | [Visit](./docs/deep-dive-into-substrate-storage-part-1.md) |
 | 25 | Deep dive into Substrate storage - part 2  | KVDB | [Visit](./docs/deep-dive-into-substrate-storage-part-2.md) |
 | 26 | Understanding runtime aggregation in substrate  | Runtime | [Visit](https://github.com/Chondria/SiB/blob/main/docs/Understanding%20runtime%20aggregation%20in%20substrate.md) |
+| 27 | Networking in Substrate   | Network | [Visit](./docs/networking-in-substrate.md) |
 
 ## Contributing
 
