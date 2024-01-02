@@ -16,8 +16,7 @@ data in a manner that mimics a single _computer_. As a result, it needs an
 approach to ensure that recorded data at any given point in time will continue
 to exist without any modification.
 
-A consensus mechanism describes who can permanently record data, a provides a
-guarantee that the data will continue to exist in its original form.
+A consensus mechanism describes who can permanently record data, and provides guarantee that the data will continue to exist in its original form.
 
 In this guide, we will review important blockchain consensus concepts and
 navigate how a couple of consensus components are implemented in Substrate. We
@@ -29,11 +28,11 @@ Thank you!
 
 ## Overview of Blockchain Consensus
 
-Detailed articles about consensus mechanisms leverage in Substrate have been
+Detailed articles about consensus mechanisms used in Substrate have been
 provided [here](https://medium.com/polkadot-network/polkadot-consensus-part-1-introduction-3e3cd6237243)
 and [here](https://wiki.polkadot.network/docs/learn-consensus#why-do-we-need-consensus).
 In this section, we will highlight some important concepts relevant to general
-concept consensus and briefly mention out-of-box consensus mechanisms made
+concept of consensus and briefly mention out-of-box consensus mechanisms made
 available in Substrate.
 
 Consensus mechanisms describe how the state transition changes reach some form
