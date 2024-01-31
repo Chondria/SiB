@@ -9,7 +9,7 @@ duration: 3h
 level: advanced
 ---
 
-# Networking in Substrate
+# Networking in Substrate - part 1
 
 Blockchains are made of a distributed network of computers interacting in a
 harmonious symphony. This network facilitates the identification of network
