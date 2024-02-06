@@ -44,7 +44,7 @@ specification [here](https://spec.polkadot.network/chap-networking)
 
 ## Summary
 
-In this guide, we developed an understanding of <primary learning objective>
+In this guide, we developed an understanding of _primary learning objective_
 
 We developed an understanding of the following:
 
