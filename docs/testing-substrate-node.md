@@ -3,7 +3,7 @@ tags:
   - substrate
 keywords: [polkadot, substrate, node, test]
 description: Networking in Substrate
-updated: 2023-12-31
+updated: 2024-1-31
 author: cenwadike
 duration: 3h
 level: advanced
