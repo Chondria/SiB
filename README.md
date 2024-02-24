@@ -66,6 +66,7 @@ By following these steps, you can test out the code samples for each Substrate i
 | 28 | Networking in Substrate - part 1  | Network | [Visit](./docs/networking-in-substrate-2.md) |
 | 29 | Understanding Node Configurations  | Node | [Visit](./docs/networking-in-substrate.md) |
 | 30 | Testing a Substrate Node  | Testing | [Visit](./docs/networking-in-substrate.md) |
+| 31 | Understanding Offchain Workers  | Offchain workers | [Visit](./docs/understanding-offchain-workers.md) |
 
 ## Contributing
 
